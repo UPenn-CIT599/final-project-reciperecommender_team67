@@ -1,4 +1,8 @@
-
+/**
+ * enum that's used to represent current state of program
+ * @author dan
+ *
+ */
 public enum State {
 	RECEIVING_INPUT("receiving"), DISPLAYING_OUTPUT("displaying");
 	
