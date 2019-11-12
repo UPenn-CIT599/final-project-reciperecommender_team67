@@ -26,6 +26,8 @@ final-project-reciperecommender_team67 created by GitHub Classroom
 - GUIRunner
 - IngredientInputController
 - IngredientInputView 
-
+- RecipeDisplayController
+- RecipeDiplayView
+- StateModel
 
 
