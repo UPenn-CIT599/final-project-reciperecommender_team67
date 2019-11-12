@@ -1,4 +1,5 @@
 import java.beans.*;
+import java.util.*;
 
 /**
  * class to contain information about the current state of the program
@@ -8,7 +9,7 @@ import java.beans.*;
 public class StateModel {
 	private State state = State.RECEIVING_INPUT;
 	private PropertyChangeSupport pcSupport = new PropertyChangeSupport(this);
-	private String[] outputRecipes;
+	private ArrayList<Recipe> outputRecipes;
 	
 	/**
 	 * sets the state of the program and notifies all listeners
@@ -24,8 +25,8 @@ public class StateModel {
 	 * sets the list of output recipes and notifies all listeners
 	 * @param newRecipes the new list of output recipes
 	 */
-	public void setOutputRecipes(String[] newRecipes) {
-		String[] oldRecipes = outputRecipes;
+	public void setOutputRecipes(ArrayList<Recipe> newRecipes) {
+		ArrayList<Recipe> oldRecipes = outputRecipes;
 		outputRecipes = newRecipes;
 		pcSupport.firePropertyChange("outputRecipes", oldRecipes, newRecipes);
 	}
@@ -48,9 +49,9 @@ public class StateModel {
 	
 	/**
 	 * gets the output recipes
-	 * @return String array containing the recipes to be shown to the user
+	 * @return ArrayList of recipes containing the recipes to be shown to the user
 	 */
-	public String[] getOutputRecipes() {
+	public ArrayList<Recipe> getOutputRecipes() {
 		return outputRecipes;
 	}
 

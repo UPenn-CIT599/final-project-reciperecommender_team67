@@ -1,9 +1,8 @@
 import java.awt.event.*;
+import java.util.*;
 
 /**
  * Controller for the ingredient input view
- * @author dan
- *
  */
 public class IngredientInputController {
 	private StateModel stateModel;
@@ -48,8 +47,12 @@ public class IngredientInputController {
 		// When user wants to find recipes, show them recipes by changing the state of the program
 		view.getSubmitButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String[] temp = {"Hello", "World"};
-				stateModel.setOutputRecipes(temp);
+				String[] inputIngredientArray = new String[view.getIngredientsModel().size()];
+				for (int i=0; i<inputIngredientArray.length; i++) {
+					inputIngredientArray[i] = view.getIngredientsModel().elementAt(i);
+				}
+				ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(inputIngredientArray);
+				stateModel.setOutputRecipes(outputRecipes);
 				stateModel.setState(State.DISPLAYING_OUTPUT);
 			}
 		});

@@ -46,9 +46,9 @@ public class RecipeDisplayController {
 		view.getOpenRecipe().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (view.getRecipes().getSelectedIndex() != -1) {
-					String currRecipe = view.getRecipesModel().elementAt(view.getRecipes().getSelectedIndex());
-					String currID = "38382";
-					String url = GUIHelpers.createRecipeURL(currRecipe, currID);
+					String currRecipeName = view.getRecipesModel().elementAt(view.getRecipes().getSelectedIndex());
+					String currID = Integer.toString(stateModel.getOutputRecipes().get(view.getRecipes().getSelectedIndex()).getID());
+					String url = GUIHelpers.createRecipeURL(currRecipeName, currID);
 					Desktop d = Desktop.getDesktop();
 					try {
 						d.browse(new URI(url));
@@ -69,8 +69,8 @@ public class RecipeDisplayController {
 	 */
 	public void populateRecipes() {
 		view.getRecipesModel().removeAllElements();
-		for (String s : stateModel.getOutputRecipes()) {
-			view.getRecipesModel().addElement(s);
+		for (Recipe r : stateModel.getOutputRecipes()) {
+			view.getRecipesModel().addElement(r.getName());
 		}
 	}
 }

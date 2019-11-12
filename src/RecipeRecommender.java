@@ -15,10 +15,10 @@ public class RecipeRecommender {
 	 * If the number of recipes is greater than 3 (this is just a hardcode for now), then include it in the list of recipes
 	 * to be returned (this is just an initial implementation of finding a recipe based on directly matching ingredients, we
 	 * will be implementing more advanced methods in future).
-	 * @param ingredients list of ingredients entered by the user
+	 * @param ingredients array containing ingredients entered by the user
 	 * @return ArrayList of potential applicable recipes
 	 */
-	public ArrayList<Recipe> returnRecipe(ArrayList<String> ingredients) {
+	public static ArrayList<Recipe> returnRecipe(String[] ingredients) {
 		ArrayList<Recipe> potentialRecipes = new ArrayList<>();
 		RecipeReader rr = new RecipeReader("RAW_recipes_cleaned.csv");
 		DataPreparation prep = new DataPreparation(rr.getAllRecipes());
@@ -30,8 +30,8 @@ public class RecipeRecommender {
 			ArrayList<String> ing = r.getIngredients();
 			int counter = 0;
 			for (int i = 0; i < ing.size(); i++){
-				for (int j = 0; j < ingredients.size(); j++) {
-					if (ingredients.get(j).equals(ing.get(i))) {
+				for (int j = 0; j < ingredients.length; j++) {
+					if (ingredients[j].equals(ing.get(i))) {
 						counter++;
 					}
 				}
@@ -40,6 +40,7 @@ public class RecipeRecommender {
 				potentialRecipes.add(r);
 			}
 		}
+		
 		// printing for testing purposes DELETE EVENTUALLY
 		System.out.println(potentialRecipes.size());
 		return potentialRecipes;
@@ -50,10 +51,10 @@ public class RecipeRecommender {
 	public static void main(String[] args) {
 		RecipeRecommender rr = new RecipeRecommender();
 
-		ArrayList<String> example = new ArrayList();
-		example.add("prepared pizza crust");
-		example.add("sausage patty");
-		example.add("eggs");
+		String[] example = new String[3];
+		example[0] = "prepared pizza crust";
+		example[1] = "sausage patty";
+		example[2] = "eggs";
 
 		rr.returnRecipe(example);
 		System.out.println(example);
