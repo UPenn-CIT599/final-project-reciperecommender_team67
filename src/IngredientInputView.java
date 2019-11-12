@@ -3,9 +3,6 @@ import javax.swing.*;
 
 /**
  * view the user sees when entering ingredients
- * 
- * @author dan
- *
  */
 public class IngredientInputView {
 

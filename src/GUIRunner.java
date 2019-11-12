@@ -5,8 +5,6 @@ import javax.swing.*;
 
 /**
  * Class to run the GUI
- * @author dan
- *
  */
 public class GUIRunner {
 	

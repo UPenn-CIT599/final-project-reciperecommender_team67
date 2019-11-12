@@ -1,7 +1,5 @@
 /**
  * Class with helper functions for the GUI
- * @author dan
- *
  */
 public class GUIHelpers {
 	

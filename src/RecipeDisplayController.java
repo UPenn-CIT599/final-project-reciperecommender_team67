@@ -8,8 +8,6 @@ import java.net.URISyntaxException;
 
 /**
  * class which controls the recipeDisplay view
- * @author dan
- *
  */
 public class RecipeDisplayController {
 	private StateModel stateModel;

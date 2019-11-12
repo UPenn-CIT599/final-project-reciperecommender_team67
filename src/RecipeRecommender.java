@@ -23,6 +23,7 @@ public class RecipeRecommender {
 		RecipeReader rr = new RecipeReader("RAW_recipes_cleaned.csv");
 		DataPreparation prep = new DataPreparation(rr.getAllRecipes());
 		ArrayList<Recipe> recipeBook = prep.getAllRecipes();
+		
 		// printing for testing purposes DELETE EVENTUALLY
 		System.out.println(recipeBook.get(1).getIngredients());
 

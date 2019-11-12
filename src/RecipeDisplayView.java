@@ -3,9 +3,6 @@ import javax.swing.*;
 
 /**
  * view the user sees when being shown recipes
- * 
- * @author dan
- *
  */
 public class RecipeDisplayView {
 	
@@ -16,7 +13,7 @@ public class RecipeDisplayView {
 	private JButton openRecipe = new JButton("Open Selected Recipe!");
 	private JButton backButton = new JButton("Change Ingredients");
 
-	// List of ingredients user has entered
+	// List of suggested recipes 
 	private DefaultListModel<String> recipesModel = new DefaultListModel<>();
 	private JList<String> recipes = new JList<>(recipesModel);
 

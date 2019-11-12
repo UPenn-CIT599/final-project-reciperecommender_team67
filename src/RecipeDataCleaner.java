@@ -3,8 +3,6 @@ import java.io.*;
 
 /**
  * class to clean the recipe data to ensure that one entry is on each line
- * @author dan
- *
  */
 public class RecipeDataCleaner {
 	

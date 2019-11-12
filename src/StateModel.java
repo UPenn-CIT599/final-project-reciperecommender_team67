@@ -3,8 +3,6 @@ import java.util.*;
 
 /**
  * class to contain information about the current state of the program
- * @author dan
- *
  */
 public class StateModel {
 	private State state = State.RECEIVING_INPUT;
