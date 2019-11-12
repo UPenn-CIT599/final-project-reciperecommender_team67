@@ -1,20 +1,31 @@
 # final-project-reciperecommender_team67
 final-project-reciperecommender_team67 created by GitHub Classroom
 
-This is a test!
+# inal-project-reciperecommender_team67
 
-# Repository Title Goes Here
+> This is the final project for Fall 2019 591 for Dan, Sylvain, and Jeanine.
+> We are building a recipe recommender to users based on ingredients that they
+> input into the GUI. 
 
-> Subtitle or Short Description Goes Here
+#Classes
+#Data Manipulation and Cleaning
 
-> ideally one sentence
+- Recipe
+- RecipeDataCleaner
+- RecipeReader
+- DataPreparation (calls RecipeReader)
 
-> include terms/tags that can be searched
+#Recipe Recommendation Algorigthms
 
-**Bold**
+- CosineDistanceCalculator
+- RecipeRecommender (calls RecipeReader, DataPreparation)
 
-- build status
-- issues
-- dependencies
-- packages management
-- etc.
+#User Interface
+
+- GUIHelpers
+- GUIRunner
+- IngredientInputController
+- IngredientInputView 
+
+
+

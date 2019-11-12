@@ -54,7 +54,7 @@ public class RecipeDataCleaner {
 	
 	public static void main(String[] args) {
 		RecipeDataCleaner rcp = new RecipeDataCleaner();
-		rcp.cleanRecipeData("Raw_recipes.CSV");
+		rcp.cleanRecipeData("Raw_recipes_short.CSV");
 	}
 
 }

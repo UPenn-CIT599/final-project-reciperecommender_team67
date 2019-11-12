@@ -27,11 +27,11 @@ public class RecipeReader {
 				} else { // Read recipe data
 					String[] newRowArr = in.nextLine().split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
-					System.out.println(Arrays.toString(newRowArr));
+//					System.out.println(Arrays.toString(newRowArr));
 					
 					
 
-//					recipes.add(parseRecipe(in.nextLine()));
+					recipes.add(parseRecipe(in.nextLine()));
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -51,7 +51,7 @@ public class RecipeReader {
 		
 		String[] newRowArr = row.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
-		System.out.println(newRowArr);
+//		System.out.println(newRowArr);
 		
 		String name = newRowArr[0];
 		int ID = Integer.parseInt(newRowArr[1]);
@@ -76,7 +76,7 @@ public class RecipeReader {
 	}
 	
 	public static void main(String[] args) {
-		
+
 		RecipeReader rr = new RecipeReader("RAW_recipes.csv");
 		
 		
