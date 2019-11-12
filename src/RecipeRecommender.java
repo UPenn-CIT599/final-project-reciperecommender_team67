@@ -13,15 +13,17 @@ public class RecipeRecommender {
 	/**
 	 * Takes in the ingredients listed by the user in the GUI and compares them to the ingredients in the recipe book.
 	 * If the number of recipes is greater than 3 (this is just a hardcode for now), then include it in the list of recipes
-	 * to be returned
-	 * @param ingredients
-	 * @return
+	 * to be returned (this is just an initial implementation of finding a recipe based on directly matching ingredients, we
+	 * will be implementing more advanced methods in future).
+	 * @param ingredients list of ingredients entered by the user
+	 * @return ArrayList of potential applicable recipes
 	 */
 	public ArrayList<Recipe> returnRecipe(ArrayList<String> ingredients) {
 		ArrayList<Recipe> potentialRecipes = new ArrayList<>();
 		RecipeReader rr = new RecipeReader("RAW_recipes_cleaned.csv");
 		DataPreparation prep = new DataPreparation(rr.getAllRecipes());
 		ArrayList<Recipe> recipeBook = prep.getAllRecipes();
+		// printing for testing purposes DELETE EVENTUALLY
 		System.out.println(recipeBook.get(1).getIngredients());
 
 		for (Recipe r : recipeBook) {
@@ -38,10 +40,13 @@ public class RecipeRecommender {
 				potentialRecipes.add(r);
 			}
 		}
-	System.out.println(potentialRecipes.size());
-	return potentialRecipes;
+		// printing for testing purposes DELETE EVENTUALLY
+		System.out.println(potentialRecipes.size());
+		return potentialRecipes;
 	}
 	
+	
+	// Using this main method for testing purposes DELETE EVENTUALLY
 	public static void main(String[] args) {
 		RecipeRecommender rr = new RecipeRecommender();
 
