@@ -38,31 +38,38 @@ public class RecipeReader {
 	}
 
 	/**
-	 * Parses a row into a Recipe object
-	 * @param row
-	 * @return a recipe
+	 * Parses a line in the csv file into a Recipe object
+	 * @param currLine the row in the csv file you are parsing
+	 * @return a recipe object filled with information from currLine
 	 */
 	public Recipe parseRecipe(String currLine) { 
+		
+		// get the name of the recipe
 		String[] temp = currLine.split(",",2);
 		String name = temp[0];
 		currLine = temp[1];
-
+		
+		// get the ID of the recipe
 		temp = currLine.split(",",2);
 		int ID = Integer.parseInt(temp[0]);
 		currLine = temp[1];
-
+		
+		// get the amount of time the recipe takes to make 
 		temp = currLine.split(",",2);
 		int minutes = Integer.parseInt(temp[0]);
 		currLine = temp[1];
-
+		
+		// get the id of the creator of the recipe
 		temp = currLine.split(",",2);
 		int contributorID = Integer.parseInt(temp[0]);
 		currLine = temp[1];
-
+		
+		// get what date the recipe was submitted
 		temp = currLine.split(",",2);
 		String dateSubmitted = temp[0];
 		currLine = temp[1];
-
+		
+		// get the tags for the recipe
 		temp = currLine.split("]", 2);
 		String currList = temp[0];
 		currList = StringUtils.substringAfter(currList, "[");
@@ -72,7 +79,8 @@ public class RecipeReader {
 			tags.add(StringUtils.substringBetween(s, "'", "'"));
 		}
 		currLine = temp[1];
-
+		
+		// get the nutrition data for the recipe
 		temp = currLine.split("]", 2);
 		currList = temp[0];
 		currList = StringUtils.substringAfter(currList, "[");
@@ -82,11 +90,13 @@ public class RecipeReader {
 			nutrition.add(s.replaceAll("\\s", ""));
 		}
 		currLine = temp[1];
-
+		
+		// get the number of steps for the recipe
 		temp = currLine.split(",", 3);
 		int numSteps = Integer.parseInt(temp[1]);
 		currLine = temp[2];
-
+		
+		// get the steps for the recipe
 		temp = currLine.split("]", 2);
 		currList = temp[0];
 		currList = StringUtils.substringAfter(currList, "[");
@@ -96,12 +106,14 @@ public class RecipeReader {
 			steps.add(StringUtils.substringBetween(s, "'", "'"));
 		}
 		currLine = temp[1];
-
+		
+		// get the description for the recipe
 		temp = currLine.split("\\[", 2);
 		String description = temp[0];
 		description = description.replaceAll("[^\\p{IsDigit}\\p{IsAlphabetic}]", "");
 		currLine = temp[1];
-
+		
+		// get the ingredients for the recipe
 		temp = currLine.split("]", 2);
 		currList = temp[0];
 		String[] ingredientsArray = currList.split(",");
@@ -110,18 +122,24 @@ public class RecipeReader {
 			ingredients.add(StringUtils.substringBetween(s, "'", "'"));
 		}
 		currLine = temp[1];
-
+		
+		// get the number of ingredients in the recipe
 		temp = currLine.split(",", 2);
 		int numIngredients = Integer.parseInt(temp[1]);
 
 		return new Recipe(name, ID, minutes, contributorID, dateSubmitted, tags, nutrition, numSteps, steps, description, ingredients, numIngredients);
 
 	}	
-
+	
+	/**
+	 * gets all of the recipes read in by this recipe reader
+	 * @return ArrayList of Recipes. 
+	 */
 	public ArrayList<Recipe> getAllRecipes() {
 		return recipes;
 	}
-
+	
+	// Method for testing purposes 
 	public static void main(String[] args) {
 
 		RecipeReader rr = new RecipeReader("RAW_recipes_short.csv");

@@ -52,7 +52,7 @@ public class RecipeDataCleaner {
 
 	/** 
 	 * makes a smaller version of the cleaned recipe data
-	 * @param filename the recipe data file you want to clean and make smaller
+	 * @param filename name of the recipe data file you want to clean and make smaller
 	 */
 	public void makeShortCleanRecipeData(String filename) {
 		try {
