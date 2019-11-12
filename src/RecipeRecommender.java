@@ -20,7 +20,7 @@ public class RecipeRecommender {
 	 */
 	public static ArrayList<Recipe> returnRecipe(String[] ingredients) {
 		ArrayList<Recipe> potentialRecipes = new ArrayList<>();
-		RecipeReader rr = new RecipeReader("RAW_recipes_cleaned.csv");
+		RecipeReader rr = new RecipeReader("RAW_recipes_short.csv");
 		DataPreparation prep = new DataPreparation(rr.getAllRecipes());
 		ArrayList<Recipe> recipeBook = prep.getAllRecipes();
 		
@@ -49,16 +49,14 @@ public class RecipeRecommender {
 	
 	
 	// Using this main method for testing purposes DELETE EVENTUALLY
-	public static void main(String[] args) {
-		RecipeRecommender rr = new RecipeRecommender();
-
-		String[] example = new String[3];
-		example[0] = "prepared pizza crust";
-		example[1] = "sausage patty";
-		example[2] = "eggs";
-
-		rr.returnRecipe(example);
-		System.out.println(example);
-	}
+	/*
+	 * public static void main(String[] args) { RecipeRecommender rr = new
+	 * RecipeRecommender();
+	 * 
+	 * String[] example = new String[3]; example[0] = "prepared pizza crust";
+	 * example[1] = "sausage patty"; example[2] = "eggs";
+	 * 
+	 * rr.returnRecipe(example); System.out.println(example); }
+	 */
 	
 }

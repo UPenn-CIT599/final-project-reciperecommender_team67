@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  *  Create a new class called RecipeReader that can read the file with the 
  *  data and parse information from the csv file to create a list of Recipe objects.
@@ -9,12 +11,11 @@ import java.util.*;
 public class RecipeReader {
 	ArrayList<Recipe> recipes = new ArrayList<>();
 	ArrayList<String> columns = new ArrayList<>();
-	
+
 	public RecipeReader(String filename) {
-		
+
 		try {
 			Scanner in = new Scanner(new FileReader(filename));			
-			
 			while (in.hasNextLine()) {
 
 				// Read column headers
@@ -25,13 +26,9 @@ public class RecipeReader {
 						System.out.println(str);
 					}
 				} else { // Read recipe data
-					String[] newRowArr = in.nextLine().split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-
-//					System.out.println(Arrays.toString(newRowArr));
-					
-					
-
-					recipes.add(parseRecipe(in.nextLine()));
+					String currLine = in.nextLine();
+					Recipe newRecipe = parseRecipe(currLine);
+					recipes.add(newRecipe);
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -39,47 +36,97 @@ public class RecipeReader {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Parses a row into a Recipe object
 	 * @param row
 	 * @return a recipe
 	 */
-	public Recipe parseRecipe(String row) { 
-				
-//		String[] newRowArr = row.split(",");
-		
-		String[] newRowArr = row.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+	public Recipe parseRecipe(String currLine) { 
+		String[] temp = currLine.split(",",2);
+		String name = temp[0];
+		currLine = temp[1];
 
-//		System.out.println(newRowArr);
-		
-		String name = newRowArr[0];
-		int ID = Integer.parseInt(newRowArr[1]);
-		int minutes = Integer.parseInt(newRowArr[2]);
-		int contributorID = Integer.parseInt(newRowArr[3]);
-		String dateSubmitted = newRowArr[4];
-		ArrayList<String> tags = new ArrayList<String>(Arrays.asList(newRowArr[5].split(" , ")));
-		ArrayList<String> nutrition = new ArrayList<String>(Arrays.asList(newRowArr[6].split(" , ")));
-		int numSteps = Integer.parseInt(newRowArr[7]);
-		ArrayList<String> steps = new ArrayList<String>(Arrays.asList(newRowArr[8].split(" , ")));
-		String description = newRowArr[9];
-		ArrayList<String> ingredients = new ArrayList<String>(Arrays.asList(newRowArr[10].split(" , ")));
-		int numIngredients = Integer.parseInt(newRowArr[11]);
-						
-		Recipe recipe = new Recipe(name, ID, minutes, contributorID, dateSubmitted, tags, nutrition, numSteps, steps, description, ingredients, numIngredients);
-				
-		return recipe;
+		temp = currLine.split(",",2);
+		int ID = Integer.parseInt(temp[0]);
+		currLine = temp[1];
+
+		temp = currLine.split(",",2);
+		int minutes = Integer.parseInt(temp[0]);
+		currLine = temp[1];
+
+		temp = currLine.split(",",2);
+		int contributorID = Integer.parseInt(temp[0]);
+		currLine = temp[1];
+
+		temp = currLine.split(",",2);
+		String dateSubmitted = temp[0];
+		currLine = temp[1];
+
+		temp = currLine.split("]", 2);
+		String currList = temp[0];
+		currList = StringUtils.substringAfter(currList, "[");
+		String[] tagsArray = currList.split(",");
+		ArrayList<String> tags = new ArrayList<String>();
+		for (String s : tagsArray) {
+			tags.add(StringUtils.substringBetween(s, "'", "'"));
+		}
+		currLine = temp[1];
+
+		temp = currLine.split("]", 2);
+		currList = temp[0];
+		currList = StringUtils.substringAfter(currList, "[");
+		String[] nutritionArray = currList.split(",");
+		ArrayList<String> nutrition = new ArrayList<String>();
+		for (String s : nutritionArray) {
+			nutrition.add(s.replaceAll("\\s", ""));
+		}
+		currLine = temp[1];
+
+		temp = currLine.split(",", 3);
+		int numSteps = Integer.parseInt(temp[1]);
+		currLine = temp[2];
+
+		temp = currLine.split("]", 2);
+		currList = temp[0];
+		currList = StringUtils.substringAfter(currList, "[");
+		String[] stepsArray = currList.split(",");
+		ArrayList<String> steps = new ArrayList<String>();
+		for (String s : stepsArray) {
+			steps.add(StringUtils.substringBetween(s, "'", "'"));
+		}
+		currLine = temp[1];
+
+		temp = currLine.split("\\[", 2);
+		String description = temp[0];
+		description = description.replaceAll("[^\\p{IsDigit}\\p{IsAlphabetic}]", "");
+		currLine = temp[1];
+
+		temp = currLine.split("]", 2);
+		currList = temp[0];
+		String[] ingredientsArray = currList.split(",");
+		ArrayList<String> ingredients = new ArrayList<String>();
+		for (String s : ingredientsArray) {
+			ingredients.add(StringUtils.substringBetween(s, "'", "'"));
+		}
+		currLine = temp[1];
+
+		temp = currLine.split(",", 2);
+		int numIngredients = Integer.parseInt(temp[1]);
+
+		return new Recipe(name, ID, minutes, contributorID, dateSubmitted, tags, nutrition, numSteps, steps, description, ingredients, numIngredients);
+
 	}	
-	
+
 	public ArrayList<Recipe> getAllRecipes() {
 		return recipes;
 	}
-	
+
 	public static void main(String[] args) {
 
-		RecipeReader rr = new RecipeReader("RAW_recipes.csv");
-		
-		
+		RecipeReader rr = new RecipeReader("RAW_recipes_short.csv");
+
+
 	}
-	
+
 }
