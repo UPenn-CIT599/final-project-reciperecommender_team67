@@ -8,17 +8,23 @@ final-project-reciperecommender_team67 created by GitHub Classroom
 > input into the GUI. 
 
 #Classes
+
+
 #Data Manipulation and Cleaning
 
 - Recipe
 - RecipeDataCleaner
 - RecipeReader
-- DataPreparation (calls RecipeReader)
+- DataPreparation (calls RecipeReader) - SP
+- CosineDistanceCalculator - Word2Vec - SP
 
-#Recipe Recommendation Algorigthms
+#Recipe Recommendation Algorithms (calls Word2Vec model)
 
-- CosineDistanceCalculator
-- RecipeRecommender (calls RecipeReader, DataPreparation)
+- Ingredients --> Vector --> Looking for Neighbors --> Retrieve 
+from original file
+- RecipeRecommender (calls RecipeReader, DataPreparation) - JC
+- AdditionalIngredientRecommender - JC  
+- IngredientSwap - JC 
 
 #User Interface
 
