@@ -21,42 +21,42 @@ public class RecipeRecommender {
 	public static ArrayList<Recipe> returnRecipe(String[] ingredients) {
 		ArrayList<Recipe> potentialRecipes = new ArrayList<>();
 		RecipeReader rr = new RecipeReader("RAW_recipes_short.csv");
-		DataPreparation prep = new DataPreparation(rr.getAllRecipes());
-		ArrayList<Recipe> recipeBook = prep.getAllRecipes();
-		
-		// printing for testing purposes DELETE EVENTUALLY
-		System.out.println(recipeBook.get(1).getIngredients());
+		ArrayList<Recipe> recipeBook = rr.getAllRecipes();
 
 		for (Recipe r : recipeBook) {
 			ArrayList<String> ing = r.getIngredients();
+			double ingLimit = (double) ingredients.length / (double) 2; //set at 50% of ingredients listed
 			int counter = 0;
 			for (int i = 0; i < ing.size(); i++){
 				for (int j = 0; j < ingredients.length; j++) {
-					if (ingredients[j].equals(ing.get(i))) {
+					if (ingredients[j].trim().equals(ing.get(i))) {
 						counter++;
 					}
 				}
 			}
-			if (counter > 3) { //hardcode
+			if (counter >= ingLimit) {
 				potentialRecipes.add(r);
 			}
 		}
 		
 		// printing for testing purposes DELETE EVENTUALLY
+		for (Recipe r : potentialRecipes) {
+			System.out.println(r.getName());
+		}
 		System.out.println(potentialRecipes.size());
 		return potentialRecipes;
 	}
-	
-	
-	// Using this main method for testing purposes DELETE EVENTUALLY
-	/*
-	 * public static void main(String[] args) { RecipeRecommender rr = new
-	 * RecipeRecommender();
-	 * 
-	 * String[] example = new String[3]; example[0] = "prepared pizza crust";
-	 * example[1] = "sausage patty"; example[2] = "eggs";
-	 * 
-	 * rr.returnRecipe(example); System.out.println(example); }
-	 */
-	
+
+	//public static String additionalIngredient(Recipe) ;
+
+
+    public static void main(String[] args) {
+
+
+        String[] testrecipe = {"sausage patty", "milk","ginger", "honey"};
+        RecipeRecommender rr = new RecipeRecommender();
+        rr.returnRecipe(testrecipe);
+
+    }
 }
+
