@@ -83,7 +83,7 @@ public class DataPreparation {
 				returnString = s;
 				isFirst = false;
 			} else {
-				returnString = returnString + " " + returnString; 
+				returnString = returnString + " " + s; 
 			}
 		}
 		
