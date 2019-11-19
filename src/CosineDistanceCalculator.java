@@ -35,30 +35,30 @@ public class CosineDistanceCalculator {
 
 	public static void main(String[] args) {
 
-		String[][] testStrings = new String[][] {
-		
-				{"winter squash mexican seasoning mixed spice honey butter olive oil salt", "sugar unsalted butter bananas eggs fresh lemon juice orange rind cake flour baking soda salt"},
-				
-				{"milk frozen juice concentrate plain yogurt", "apple juice strawberry banana non-fat vanilla frozen yogurt ice"},
-				
-				{"ground beef white rice beef gravy onion eggs", "ground beef green peas cream of mushroom soup milk onion salt pepper"},
-				
-				{"bacon pepper", "cocoa sugar water"},
-				
-				{"flour sugar cocoa baking powder salt milk vegetable oil vanilla brown sugar hot water", "flour sugar cocoa baking soda salt vegetable oil vinegar vanilla water"}
-		
-		};
-
-		for (String[] input : testStrings) {
-
-			// How different words are between both strings
-			double cosineDistance = new CosineDistance().apply(input[0], input[1]);
-			double cosineDistancePercentage = Math.round(cosineDistance * 100);
-			double cosineSimilarityPercentage = Math.round((1 - cosineDistance) * 100);
-
-			System.out.println("cosine distance of:\n" + input[0] + "\nand\n" + input[1] + "\nwords in recipes are "
-					+ cosineDistancePercentage + "% different or " + cosineSimilarityPercentage + "% similar\n");
-		}
+//		String[][] testStrings = new String[][] {
+//		
+//				{"winter squash mexican seasoning mixed spice honey butter olive oil salt", "sugar unsalted butter bananas eggs fresh lemon juice orange rind cake flour baking soda salt"},
+//				
+//				{"milk frozen juice concentrate plain yogurt", "apple juice strawberry banana non-fat vanilla frozen yogurt ice"},
+//				
+//				{"ground beef white rice beef gravy onion eggs", "ground beef green peas cream of mushroom soup milk onion salt pepper"},
+//				
+//				{"bacon pepper", "cocoa sugar water"},
+//				
+//				{"flour sugar cocoa baking powder salt milk vegetable oil vanilla brown sugar hot water", "flour sugar cocoa baking soda salt vegetable oil vinegar vanilla water"}
+//		
+//		};
+//
+//		for (String[] input : testStrings) {
+//
+//			// How different words are between both strings
+//			double cosineDistance = new CosineDistance().apply(input[0], input[1]);
+//			double cosineDistancePercentage = Math.round(cosineDistance * 100);
+//			double cosineSimilarityPercentage = Math.round((1 - cosineDistance) * 100);
+//
+//			System.out.println("cosine distance of:\n" + input[0] + "\nand\n" + input[1] + "\nwords in recipes are "
+//					+ cosineDistancePercentage + "% different or " + cosineSimilarityPercentage + "% similar\n");
+//		}
 
 		// other test data
 		double cosineDistanceS1S2 = new CosineDistance().apply(s1.toLowerCase(), s2.toLowerCase());

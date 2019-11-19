@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 public class RecipeReader {
 	ArrayList<Recipe> recipes = new ArrayList<>();
 	ArrayList<String> columns = new ArrayList<>();
+	DataPreparation dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
 
 	public RecipeReader(String filename) {
 
@@ -23,7 +24,6 @@ public class RecipeReader {
 					String nextLine = in.nextLine();
 					for (String str : nextLine.split(",")) {
 						columns.add(str);
-						System.out.println(str);
 					}
 				} else { // Read recipe data
 					String currLine = in.nextLine();
@@ -119,7 +119,12 @@ public class RecipeReader {
 		String[] ingredientsArray = currList.split(",");
 		ArrayList<String> ingredients = new ArrayList<String>();
 		for (String s : ingredientsArray) {
-			ingredients.add(StringUtils.substringBetween(s, "'", "'"));
+			String cleanIngredient = StringUtils.substringBetween(s, "'", "'");
+			if (StringUtils.isEmpty(cleanIngredient)) {
+				continue;
+			}
+			String onlyNounIngredient = dataPrep.removeNonNouns(cleanIngredient);
+			ingredients.add(onlyNounIngredient);
 		}
 		currLine = temp[1];
 		

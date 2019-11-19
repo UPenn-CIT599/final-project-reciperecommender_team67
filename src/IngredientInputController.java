@@ -7,6 +7,7 @@ import java.util.*;
 public class IngredientInputController {
 	private StateModel stateModel;
 	private IngredientInputView view;
+	DataPreparation dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
 	
 	public IngredientInputController(StateModel model, IngredientInputView view) {
 		this.stateModel = model;
@@ -51,6 +52,12 @@ public class IngredientInputController {
 				for (int i=0; i<inputIngredientArray.length; i++) {
 					inputIngredientArray[i] = view.getIngredientsModel().elementAt(i);
 				}
+				
+				// remove non nouns from user input ingredients
+				for (int i=0; i<inputIngredientArray.length; i++) {
+					inputIngredientArray[i] = dataPrep.removeNonNouns(inputIngredientArray[i]);
+				}
+				
 				ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(inputIngredientArray);
 				stateModel.setOutputRecipes(outputRecipes);
 				stateModel.setState(State.DISPLAYING_OUTPUT);
