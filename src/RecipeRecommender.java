@@ -1,5 +1,3 @@
-import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
 import org.apache.commons.text.similarity.CosineDistance;
@@ -26,10 +24,17 @@ public class RecipeRecommender {
 		DataPreparation dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
 		ArrayList<Double> cosSimilarity = new ArrayList<Double>();
 		// get cosine similarity for each recipe
+		int errorCounter = 0;
 		for (Recipe r : recipes) {
 			String currRecipeIngredients = dataPrep.makeContiniousString(r.getIngredients());
-			cosSimilarity.add(1 - new CosineDistance().apply(currRecipeIngredients.toLowerCase(), inputIngredients));
+			try {
+				cosSimilarity.add(1 - new CosineDistance().apply(currRecipeIngredients.toLowerCase(), inputIngredients));
+			} catch(Exception e) {
+				cosSimilarity.add(-2.0);
+				errorCounter++;
+			}
 		}
+		System.out.println(errorCounter);
 		
 		ArrayList<Recipe> topRecipes = new ArrayList<Recipe>();
 		ArrayList<Double> topSimilarity = new ArrayList<Double>();
