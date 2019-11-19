@@ -100,7 +100,7 @@ public class DataPreparation {
 				isFirst = false;
 			}
 			else {
-				returnString = " " + s;
+				returnString = returnString + " " + s;
 			}
 		}
 		return returnString;
@@ -120,7 +120,7 @@ public class DataPreparation {
 				isFirst = false;
 			}
 			else {
-				returnString = " " + s;
+				returnString = returnString + " " + s;
 			}
 		}
 		return returnString;
