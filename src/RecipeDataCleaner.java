@@ -17,7 +17,7 @@ public class RecipeDataCleaner {
 			FileWriter fw;
 			try {
 				// write to this file
-				fw = new FileWriter("RAW_recipes_cleaned.csv", false);
+				fw = new FileWriter("data/RAW_recipes_cleaned.csv", false);
 				PrintWriter pw = new PrintWriter(fw);
 				// print the headers of the columns on the file
 				pw.println(in.nextLine());
@@ -97,8 +97,8 @@ public class RecipeDataCleaner {
 
 	public static void main(String[] args) {
 		RecipeDataCleaner rcp = new RecipeDataCleaner();
-		rcp.cleanRecipeData("Raw_recipes.CSV");
-		rcp.makeShortCleanRecipeData("Raw_recipes.CSV");
+		rcp.cleanRecipeData("data/Raw_recipes.CSV");
+//		rcp.makeShortCleanRecipeData("Raw_recipes.CSV");
 	}
 
 }
