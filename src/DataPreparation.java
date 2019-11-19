@@ -83,7 +83,7 @@ public class DataPreparation {
 				returnString = s;
 				isFirst = false;
 			} else {
-				returnString = " " + returnString; 
+				returnString = returnString + " " + returnString; 
 			}
 		}
 		
@@ -138,6 +138,13 @@ public class DataPreparation {
 	public String removeSpaces(String inputString) {
 		return inputString.replaceAll("\\s", "");
 	}
-
+	
+	public static void main(String[] args) {
+		DataPreparation dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
+		String temp = dataPrep.removeNonNouns("whole kernel corn");
+		System.out.println(temp);
+		temp = dataPrep.removeSpaces(temp);
+		System.out.println(temp);
+	}
 }
 

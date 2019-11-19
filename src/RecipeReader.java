@@ -16,9 +16,9 @@ public class RecipeReader {
 	public RecipeReader(String filename) {
 
 		try {
-			Scanner in = new Scanner(new FileReader(filename));			
+			Scanner in = new Scanner(new FileReader(filename));		
 			while (in.hasNextLine()) {
-
+				
 				// Read column headers
 				if (columns.size() == 0) {
 					String nextLine = in.nextLine();
@@ -146,7 +146,7 @@ public class RecipeReader {
 	// Method for testing purposes 
 	public static void main(String[] args) {
 
-		RecipeReader rr = new RecipeReader("RAW_recipes_short.csv");
+		RecipeReader rr = new RecipeReader("data/RAW_recipes_cleaned.csv");
 
 
 	}

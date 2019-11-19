@@ -67,6 +67,12 @@ public class IngredientInputController {
 				String inputIngredientString = dataPrep.makeContiniousString(inputIngredientArray).toLowerCase();
 				
 				ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(recipeReader.getAllRecipes(), inputIngredientString, 10);
+				//DELETE
+				System.out.println(inputIngredientString);
+				for (Recipe r : outputRecipes) {
+					System.out.println(dataPrep.makeContiniousString(r.getIngredients()));
+				}
+				
 				stateModel.setOutputRecipes(outputRecipes);
 				stateModel.setState(State.DISPLAYING_OUTPUT);
 			}

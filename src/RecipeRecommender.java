@@ -85,19 +85,25 @@ public class RecipeRecommender {
 			}
 		}
 		
+		//DELETE
+		for (Double d : topSimilarity) {
+			System.out.println(d);
+		}
+		
 		return topRecipes;
 	}
 	
 	
 	// Using this main method for testing purposes DELETE EVENTUALLY
-	/*
-	 * public static void main(String[] args) { RecipeRecommender rr = new
-	 * RecipeRecommender();
-	 * 
-	 * String[] example = new String[3]; example[0] = "prepared pizza crust";
-	 * example[1] = "sausage patty"; example[2] = "eggs";
-	 * 
-	 * rr.returnRecipe(example); System.out.println(example); }
-	 */
+//	  public static void main(String[] args) { 
+//		  RecipeRecommender rr = new
+//		  RecipeRecommender();
+//		  
+//		  String[] example = new String[3]; example[0] = "prepared pizza crust";
+//		  example[1] = "sausage patty"; example[2] = "eggs";
+//		  
+//		  rr.returnRecipe(example); System.out.println(example); 
+//	  }
+	 
 	
 }
