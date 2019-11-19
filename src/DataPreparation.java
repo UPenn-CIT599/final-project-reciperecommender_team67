@@ -86,6 +86,45 @@ public class DataPreparation {
 		return returnString;
 	}
 	
+	/**
+	 * turns an array of strings into one long string with spaces between
+	 * @param ingredients array of strings with ingredients in each cell
+	 * @return long string of all ingredients
+	 */
+	public String makeContiniousString(String[] ingredients) {
+		String returnString = "";
+		boolean isFirst = true;
+		for (String s : ingredients) {
+			if (isFirst) {
+				returnString = s;
+				isFirst = false;
+			}
+			else {
+				returnString = " " + s;
+			}
+		}
+		return returnString;
+	}
+	
+	/**
+	 * turns an arraylist of strings into one long string with spaces between
+	 * @param ingredients array list of strings with ingredients in each cell
+	 * @return long string of all ingredients
+	 */
+	public String makeContiniousString(ArrayList<String> ingredients) {
+		String returnString = "";
+		boolean isFirst = true;
+		for (String s : ingredients) {
+			if (isFirst) {
+				returnString = s;
+				isFirst = false;
+			}
+			else {
+				returnString = " " + s;
+			}
+		}
+		return returnString;
+	}
 
 }
 
