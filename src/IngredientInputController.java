@@ -8,6 +8,7 @@ public class IngredientInputController {
 	private StateModel stateModel;
 	private IngredientInputView view;
 	DataPreparation dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
+	RecipeReader recipeReader = new RecipeReader("data/RAW_recipes_cleaned.csv");
 	
 	public IngredientInputController(StateModel model, IngredientInputView view) {
 		this.stateModel = model;
@@ -21,6 +22,7 @@ public class IngredientInputController {
 		
 		// When user clicks button to add an ingredient, add the ingredient
 		view.getAddButton().addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!view.getIngredientInput().getText().contentEquals("")) {
 					view.getIngredientsModel().addElement(view.getIngredientInput().getText());
@@ -31,6 +33,7 @@ public class IngredientInputController {
 		
 		// When user clicks button to remove the selected ingredient, remove it
 		view.getRemoveSelected().addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (view.getIngredients().getSelectedIndex() != -1) {
 					view.getIngredientsModel().remove(view.getIngredients().getSelectedIndex());
@@ -40,6 +43,7 @@ public class IngredientInputController {
 		
 		// When user clicks button to remove all ingredients, remove them
 		view.getRemoveAll().addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.getIngredientsModel().removeAllElements();
 			}
@@ -47,6 +51,7 @@ public class IngredientInputController {
 		
 		// When user wants to find recipes, show them recipes by changing the state of the program
 		view.getSubmitButton().addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] inputIngredientArray = new String[view.getIngredientsModel().size()];
 				for (int i=0; i<inputIngredientArray.length; i++) {
@@ -56,9 +61,12 @@ public class IngredientInputController {
 				// remove non nouns from user input ingredients
 				for (int i=0; i<inputIngredientArray.length; i++) {
 					inputIngredientArray[i] = dataPrep.removeNonNouns(inputIngredientArray[i]);
+					inputIngredientArray[i] = dataPrep.removeSpaces(inputIngredientArray[i]);
 				}
 				
-				ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(inputIngredientArray);
+				String inputIngredientString = dataPrep.makeContiniousString(inputIngredientArray).toLowerCase();
+				
+				ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(recipeReader.getAllRecipes(), inputIngredientString, 10);
 				stateModel.setOutputRecipes(outputRecipes);
 				stateModel.setState(State.DISPLAYING_OUTPUT);
 			}
