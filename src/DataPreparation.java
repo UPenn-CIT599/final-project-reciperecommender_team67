@@ -12,8 +12,7 @@ import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 
 /**
- * Create a DataPreparation class that contains an ArrayList of Recipe objects as an instance variable
- * and create methods to pre-process the recipe entries for analysis in DataAnalysis.
+ * Data preparation class has methods that prepare the data for analysis
  */
 public class DataPreparation {
 	
@@ -23,7 +22,12 @@ public class DataPreparation {
 	Tokenizer tokenizer;
 	POSModel posModel;
 	POSTaggerME posTagger;
-		
+	
+	/**
+	 * Contructor
+	 * @param tokenModelFileName name of the model file that will break ingredients up into tokens
+	 * @param posModelFileName name of the model file that will identify part of speech of the ingredients
+	 */
 	public DataPreparation(String tokenModelFileName, String posModelFileName) {
 		try {
 			this.tokenModelIn = new FileInputStream(tokenModelFileName);
