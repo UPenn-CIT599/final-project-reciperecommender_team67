@@ -132,7 +132,7 @@ public class DataPreparation {
 	 * @return string with no spaces
 	 */
 	public String removeSpaces(String inputString) {
-		
+		return inputString.replaceAll("\\s", "");
 	}
 
 }
