@@ -27,8 +27,12 @@ public class RecipeReader {
 					}
 				} else { // Read recipe data
 					String currLine = in.nextLine();
-					Recipe newRecipe = parseRecipe(currLine);
-					recipes.add(newRecipe);
+					try {
+						Recipe newRecipe = parseRecipe(currLine);
+						recipes.add(newRecipe);
+					} catch(Exception e) {
+						continue;
+					}
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -124,16 +128,11 @@ public class RecipeReader {
 				continue;
 			}
 			String onlyNounIngredient = dataPrep.removeNonNouns(cleanIngredient);
-			ingredients.add(onlyNounIngredient);
+			ingredients.add(dataPrep.removeSpaces(onlyNounIngredient));
 		}
 		currLine = temp[1];
 		
-		// get the number of ingredients in the recipe
-		temp = currLine.split(",", 2);
-		int numIngredients = Integer.parseInt(temp[1]);
-
-		return new Recipe(name, ID, minutes, contributorID, dateSubmitted, tags, nutrition, numSteps, steps, description, ingredients, numIngredients);
-
+		return new Recipe(name, ID, minutes, contributorID, dateSubmitted, tags, nutrition, numSteps, steps, description, ingredients);
 	}	
 	
 	/**
