@@ -21,9 +21,9 @@ public class Recipe {
 	private ArrayList<String> steps;
 	private String description;
 	private ArrayList<String> ingredients;
-	private int numIngredients;
 
-	public Recipe(String name, int ID, int minutes, int contributorID, String dateSubmitted, ArrayList<String> tags, ArrayList<String> nutrition, int numSteps, ArrayList<String> steps, String description, ArrayList<String> ingredients, int numIngredients) {
+	public Recipe(String name, int ID, int minutes, int contributorID, String dateSubmitted, ArrayList<String> tags, 
+			ArrayList<String> nutrition, int numSteps, ArrayList<String> steps, String description, ArrayList<String> ingredients) {
 		
 		this.name = name;
 		this.ID = ID;
@@ -36,7 +36,6 @@ public class Recipe {
 		this.steps = steps;
 		this.description = description;
 		this.ingredients = ingredients;
-		this.numIngredients = numIngredients;
 
 	}
 
@@ -45,7 +44,7 @@ public class Recipe {
 		return "Recipe [name=" + name + ", ID=" + ID + ", minutes=" + minutes + ", contributorID=" + contributorID
 				+ ", dateSubmitted=" + dateSubmitted + ", tags=" + tags + ", nutrition=" + nutrition + ", numSteps="
 				+ numSteps + ", steps=" + steps + ", description=" + description + ", ingredients=" + ingredients
-				+ ", numIngredients=" + numIngredients + "]";
+				+ ", numIngredients=" + "]";
 	}
 
 	/**
@@ -200,20 +199,6 @@ public class Recipe {
 	 */
 	public void setIngredients(ArrayList<String> ingredients) {
 		this.ingredients = ingredients;
-	}
-
-	/**
-	 * @return the numIngredients
-	 */
-	public int getNumIngredients() {
-		return numIngredients;
-	}
-
-	/**
-	 * @param numIngredients the numIngredients to set
-	 */
-	public void setNumIngredients(int numIngredients) {
-		this.numIngredients = numIngredients;
 	}
 	
 }
