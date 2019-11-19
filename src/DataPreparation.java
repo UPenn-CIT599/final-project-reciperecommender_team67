@@ -125,6 +125,15 @@ public class DataPreparation {
 		}
 		return returnString;
 	}
+	
+	/**
+	 * removes the spaces from a string
+	 * @param inputString a string you want to remove the spaces from
+	 * @return string with no spaces
+	 */
+	public String removeSpaces(String inputString) {
+		
+	}
 
 }
 
