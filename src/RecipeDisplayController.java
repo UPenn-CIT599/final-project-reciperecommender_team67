@@ -17,6 +17,7 @@ public class RecipeDisplayController {
 		this.stateModel = model;
 		// Listen for when the user submits the ingredient list and update when necessary
 		this.stateModel.addPropertyChangeListener(new PropertyChangeListener() {
+			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				// if the state change is the one we're interested in...
 				if (evt.getPropertyName().equals("outputRecipes")) {
@@ -34,6 +35,7 @@ public class RecipeDisplayController {
 		
 		// Allow user to enter more ingredients when they click on this button
 		view.getBackButton().addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// change state of the program
 				stateModel.setState(State.RECEIVING_INPUT);
@@ -42,6 +44,7 @@ public class RecipeDisplayController {
 		
 		// When user clicks on "open recipe" button, open a link to the recipe
 		view.getOpenRecipe().addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (view.getRecipes().getSelectedIndex() != -1) {
 					String currRecipeName = view.getRecipesModel().elementAt(view.getRecipes().getSelectedIndex());
