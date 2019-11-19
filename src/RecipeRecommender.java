@@ -2,6 +2,8 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
 
+import org.apache.commons.text.similarity.CosineDistance;
+
 /**
  *  Build all the necessary objects (RecipeReader, DataPreparation, DataAnalysis ***TBD***) in a Main class that reads in the
  *  file and calls the methods to create ArrayLists of all the recipes.
@@ -9,6 +11,8 @@ import java.util.*;
  */
 
 public class RecipeRecommender {
+	
+	
 
 	/**
 	 * Takes in the ingredients listed by the user in the GUI and compares them to the ingredients in the recipe book.
@@ -18,33 +22,65 @@ public class RecipeRecommender {
 	 * @param ingredients array containing ingredients entered by the user
 	 * @return ArrayList of potential applicable recipes
 	 */
-	public static ArrayList<Recipe> returnRecipe(String[] ingredients) {
-		ArrayList<Recipe> potentialRecipes = new ArrayList<>();
-		RecipeReader rr = new RecipeReader("RAW_recipes_short.csv");
-		DataPreparation prep = new DataPreparation(rr.getAllRecipes());
-		ArrayList<Recipe> recipeBook = prep.getAllRecipes();
+	public static ArrayList<Recipe> returnRecipe(ArrayList<Recipe> recipes, String inputIngredients, int numRecipes) {
+		DataPreparation dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
+		ArrayList<Double> cosSimilarity = new ArrayList<Double>();
+		// get cosine similarity for each recipe
+		for (Recipe r : recipes) {
+			String currRecipeIngredients = dataPrep.makeContiniousString(r.getIngredients());
+			cosSimilarity.add(1 - new CosineDistance().apply(currRecipeIngredients.toLowerCase(), inputIngredients));
+		}
 		
-		// printing for testing purposes DELETE EVENTUALLY
-		System.out.println(recipeBook.get(1).getIngredients());
-
-		for (Recipe r : recipeBook) {
-			ArrayList<String> ing = r.getIngredients();
-			int counter = 0;
-			for (int i = 0; i < ing.size(); i++){
-				for (int j = 0; j < ingredients.length; j++) {
-					if (ingredients[j].equals(ing.get(i))) {
-						counter++;
+		ArrayList<Recipe> topRecipes = new ArrayList<Recipe>();
+		ArrayList<Double> topSimilarity = new ArrayList<Double>();
+		double cutoffScore;
+		
+		for (int i = 0; i < recipes.size(); i++) {
+			// automatically add the first recipe
+			if (i==0) {
+				topRecipes.add(recipes.get(i));
+				topSimilarity.add(cosSimilarity.get(i));
+			} else {
+				// if we havn't gone through enough recipes yet set the
+				// cutoff score to -1.0 so any recipe will make it into the list
+				if (i < numRecipes) {
+					cutoffScore = -1.0;
+				}
+				// if we have gone through enough recipe set the cutoff
+				// score to the lowest topSimilarity
+				else {
+					cutoffScore = topSimilarity.get(numRecipes - 1);
+				}
+				// if score of this recipe is lower than cutoff score skip this recipe
+				if (cosSimilarity.get(i) <= cutoffScore) {
+					continue;
+				} else {
+					for (int j = 0; j < topRecipes.size(); j++) {
+						// see where the current recipe falls in the top recipes by comparing it to each top
+						// recipe starting with the one with the lowest score
+						if (cosSimilarity.get(i) < topSimilarity.get(topRecipes.size() - j - 1)) {
+							topRecipes.add(topRecipes.size() - j, recipes.get(i));
+							topSimilarity.add(topSimilarity.size() - j, cosSimilarity.get(i));
+							break;
+						}
+						// if it has not had a lower score up to this point, it has the newest highest
+						// score so place it at index 0
+						else if (j == topRecipes.size() - 1) {
+							topRecipes.add(0, recipes.get(i));
+							topSimilarity.add(0, cosSimilarity.get(i));
+							break;
+						}
+					}
+					// remove the excess recipe if necessary
+					if (i >= numRecipes) {
+						topRecipes.remove(numRecipes);
+						topSimilarity.remove(numRecipes);
 					}
 				}
 			}
-			if (counter > 3) { //hardcode
-				potentialRecipes.add(r);
-			}
 		}
 		
-		// printing for testing purposes DELETE EVENTUALLY
-		System.out.println(potentialRecipes.size());
-		return potentialRecipes;
+		return topRecipes;
 	}
 	
 	
