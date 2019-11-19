@@ -44,13 +44,14 @@ public class GUIRunner {
 		frame.add(mainPanel);
 		
 		// Set features of the main frame
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
 		// Listen for changes in the state of the programming (going from input to output or vice versa)
 		model.addPropertyChangeListener(new PropertyChangeListener() {
+			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				// if the state change is the one we're interested in...
 				if (evt.getPropertyName().equals("State")) {
@@ -64,6 +65,7 @@ public class GUIRunner {
 	// call Swing code in a thread-safe manner like tutorials
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				createAndDisplay();
 			}
