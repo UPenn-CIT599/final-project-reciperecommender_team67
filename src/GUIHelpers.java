@@ -51,5 +51,19 @@ public class GUIHelpers {
 		String urlEnd = new String(nameFormattedNew)+"-"+recipeID;
 		return urlBeginning + urlEnd;
 	}
-
+	
+	/**
+	 * removes excess spaces from a string such that there is only one space between each word
+	 * @param s the string you want to remove excess spaces from
+	 * @return A string containing s with no spaces in it 
+	 */
+	public static String removeExcessSpaces(String s) {	
+		return s.trim().replaceAll(" +", " ");
+	}
+	
+	public static void main (String[] args) {
+		String string1 = "hello     my  name is   dan";
+		System.out.println(removeExcessSpaces(string1));
+		
+	}
 }
