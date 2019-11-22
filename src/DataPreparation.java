@@ -139,6 +139,7 @@ public class DataPreparation {
 		return inputString.replaceAll("\\s", "");
 	}
 	
+	// This method is for testing purposes DELETE EVENTUALLY
 	public static void main(String[] args) {
 		DataPreparation dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
 		String temp = dataPrep.removeNonNouns("whole kernel corn");
