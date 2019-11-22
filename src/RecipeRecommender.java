@@ -3,22 +3,18 @@ import java.util.*;
 import org.apache.commons.text.similarity.CosineDistance;
 
 /**
- *  Build all the necessary objects (RecipeReader, DataPreparation, DataAnalysis ***TBD***) in a Main class that reads in the
- *  file and calls the methods to create ArrayLists of all the recipes.
- *  Data preparation for data analysis is processed from DataPreparation instances to DataAnalysis ***TBD*** instances.
+ * class that reccommends recipes based on ingredients
  */
 
 public class RecipeRecommender {
 	
-	
-
 	/**
-	 * Takes in the ingredients listed by the user in the GUI and compares them to the ingredients in the recipe book.
-	 * If the number of recipes is greater than 3 (this is just a hardcode for now), then include it in the list of recipes
-	 * to be returned (this is just an initial implementation of finding a recipe based on directly matching ingredients, we
-	 * will be implementing more advanced methods in future).
-	 * @param ingredients array containing ingredients entered by the user
-	 * @return ArrayList of potential applicable recipes
+	 * based on user inputted ingredients, it returns recipes with the most similar ingredients.  Similarity is calculated using cosine similarity.
+	 * Additionally, non noun words are removed from each ingredient.
+	 * @param recipes arraylist of recipes to choose from
+	 * @param inputIngredients a string containing space separated ingredients to use to find a similar recipe
+	 * @param numRecipes integer representing how many recipes should be returned
+	 * @return Arraylist of numRecipes recipes that are most similar to inputIngredients
 	 */
 	public static ArrayList<Recipe> returnRecipe(ArrayList<Recipe> recipes, String inputIngredients, int numRecipes) {
 		DataPreparation dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
@@ -94,8 +90,8 @@ public class RecipeRecommender {
 	}
 	
 	
-	// Using this main method for testing purposes DELETE EVENTUALLY
-//	  public static void main(String[] args) { 
+//	 Using this main method for testing purposes DELETE EVENTUALLY
+	  public static void main(String[] args) { 
 //		  RecipeRecommender rr = new
 //		  RecipeRecommender();
 //		  
@@ -103,7 +99,11 @@ public class RecipeRecommender {
 //		  example[1] = "sausage patty"; example[2] = "eggs";
 //		  
 //		  rr.returnRecipe(example); System.out.println(example); 
-//	  }
+		  String string1 = "chicken potato rice zucchini carrot";
+		  String string2 = "zucchini";
+		  
+		  System.out.println((1 - new CosineDistance().apply(string2, string1)));
+	  }
 	 
 	
 }
