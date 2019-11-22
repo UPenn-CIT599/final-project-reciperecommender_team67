@@ -42,7 +42,7 @@ public class RecipeDataCleaner {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			in.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -88,7 +88,7 @@ public class RecipeDataCleaner {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			in.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
