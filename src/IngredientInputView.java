@@ -21,9 +21,9 @@ public class IngredientInputView {
 	// List of ingredients user has entered
 	private DefaultListModel<String> ingredientsModel = new DefaultListModel<>();
 	private JList<String> ingredients = new JList<>(ingredientsModel);
+	
 
 	IngredientInputView() {
-
 		// Set up the display grid
 		mainPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -117,4 +117,5 @@ public class IngredientInputView {
 	public JList<String> getIngredients() {
 		return ingredients;
 	}
+	
 }
