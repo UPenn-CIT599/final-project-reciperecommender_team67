@@ -9,36 +9,40 @@ import org.apache.commons.lang3.StringUtils;
  */
 
 public class RecipeReader {
-	ArrayList<Recipe> recipes = new ArrayList<>();
-	ArrayList<String> columns = new ArrayList<>();
-	DataPreparation dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
+	DataPreparation dataPrep;
+	String filename;
 
 	public RecipeReader(String filename) {
-
+		this.filename = filename;
+		dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
+	}
+	
+	/**
+	 * reads in recipes from a csv file
+	 * @return ArrayList of recipes
+	 */
+	public ArrayList<Recipe> readRecipes() {
+		ArrayList<Recipe> recipes = new ArrayList<>();
 		try {
-			Scanner in = new Scanner(new FileReader(filename));		
+			Scanner in = new Scanner(new FileReader(filename));	
 			while (in.hasNextLine()) {
-				
-				// Read column headers
-				if (columns.size() == 0) {
-					String nextLine = in.nextLine();
-					for (String str : nextLine.split(",")) {
-						columns.add(str);
-					}
-				} else { // Read recipe data
-					String currLine = in.nextLine();
-					try {
-						Recipe newRecipe = parseRecipe(currLine);
-						recipes.add(newRecipe);
-					} catch(Exception e) {
-						continue;
-					}
+				// Skip the headers 
+				in.nextLine();
+				// Read recipe data
+				String currLine = in.nextLine();
+				try {
+					Recipe newRecipe = parseRecipe(currLine);
+					recipes.add(newRecipe);
+				} catch(Exception e) {
+					continue;
 				}
 			}
+			in.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return recipes;
 	}
 
 	/**
@@ -135,15 +139,8 @@ public class RecipeReader {
 		return new Recipe(name, ID, minutes, contributorID, dateSubmitted, tags, nutrition, numSteps, steps, description, ingredients);
 	}	
 	
-	/**
-	 * gets all of the recipes read in by this recipe reader
-	 * @return ArrayList of Recipes. 
-	 */
-	public ArrayList<Recipe> getAllRecipes() {
-		return recipes;
-	}
 	
-	// Method for testing purposes 
+	// Method for testing purposes DELETE EVENTUALLY 
 	public static void main(String[] args) {
 
 		RecipeReader rr = new RecipeReader("data/RAW_recipes_cleaned.csv");
