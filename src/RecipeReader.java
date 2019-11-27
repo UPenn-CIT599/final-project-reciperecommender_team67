@@ -141,10 +141,6 @@ public class RecipeReader {
 	
 	// Method for testing purposes 
 	public static void main(String[] args) {
-
-		RecipeReader rr = new RecipeReader("RAW_recipes_short.csv");
-
-
 	}
 
 }

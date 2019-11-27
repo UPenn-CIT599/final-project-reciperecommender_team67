@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 
@@ -53,6 +54,14 @@ public class IngredientInputController {
 				}
 				ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(inputIngredientArray);
 				stateModel.setOutputRecipes(outputRecipes);
+				stateModel.setState(State.DISPLAYING_OUTPUT);
+			}
+		});
+
+		view.getFeelingLuckyButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Recipe> randomizedRecipe = RecipeRecommender.randomRecipe();
+				stateModel.setOutputRecipes(randomizedRecipe);
 				stateModel.setState(State.DISPLAYING_OUTPUT);
 			}
 		});

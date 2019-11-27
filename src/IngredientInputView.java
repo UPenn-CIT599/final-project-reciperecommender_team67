@@ -17,6 +17,7 @@ public class IngredientInputView {
 	private JButton removeSelected = new JButton("Remove selected");
 	private JButton removeAll = new JButton("Remove all");
 	private JButton submitButton = new JButton("Find Recipes!");
+	private JButton feelingLuckyButton = new JButton("I'm Feeling Lucky!");
 
 	// List of ingredients user has entered
 	private DefaultListModel<String> ingredientsModel = new DefaultListModel<>();
@@ -45,6 +46,9 @@ public class IngredientInputView {
 
 		c.gridy = 7;
 		mainPanel.add(submitButton, c);
+
+		c.gridy = 8;
+		mainPanel.add(feelingLuckyButton, c);
 
 		c.gridy = 2;
 		c.gridheight = 3;
@@ -117,4 +121,16 @@ public class IngredientInputView {
 	public JList<String> getIngredients() {
 		return ingredients;
 	}
+
+	/**
+	 * gets the FeelingLuckyButton
+	 * @return JButton the user clicks to get a random recipe
+	 */
+	public JButton getFeelingLuckyButton() {
+		return feelingLuckyButton;
+	}
+
 }
+
+
+

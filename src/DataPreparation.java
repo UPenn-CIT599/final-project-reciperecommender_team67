@@ -24,6 +24,10 @@ public class DataPreparation {
 		}
 		return allRecipes;		
 	}
+
+	public void getSimililarity(ArrayList<Recipe> allRecipes) {
+		//return
+	}
 	
 }
 
