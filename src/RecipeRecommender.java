@@ -37,10 +37,11 @@ public class RecipeRecommender {
 		double cutoffScore;
 
 		for (int i = 0; i < recipes.size(); i++) {
-			// automatically add the first recipe
+			// if a recipe doesn't excede threshold skip it
 			if (cosSimilarity.get(i) < minSimilarity) {
 				continue;
 			}
+			// automatically add a recipe if we haven't added any yet
 			else if (topRecipes.isEmpty()) {
 				topRecipes.add(recipes.get(i));
 				topSimilarity.add(cosSimilarity.get(i));
