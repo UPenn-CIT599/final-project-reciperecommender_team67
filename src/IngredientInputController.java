@@ -38,7 +38,13 @@ public class IngredientInputController {
 		view.getAddButton().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!view.getIngredientInput().getText().contentEquals("")) {
+				if (view.getIngredientInput().getText().contentEquals("")) {
+					displayErrorDialog("Please enter an ingredient before adding!");
+				} 
+				else if (view.getIngredientsModel().contains(view.getIngredientInput().getText())) {
+					displayErrorDialog("You've already entered that ingredient!");
+				}
+				else {
 					view.getIngredientsModel().addElement(view.getIngredientInput().getText());
 					view.getIngredientInput().setText("");
 				}
@@ -105,13 +111,13 @@ public class IngredientInputController {
 			}
 		});
 
-		view.getFeelingLuckyButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ArrayList<Recipe> randomizedRecipe = RecipeRecommender.randomRecipe();
-				stateModel.setOutputRecipes(randomizedRecipe);
-				stateModel.setState(State.DISPLAYING_OUTPUT);
-			}
-		});
+//		view.getFeelingLuckyButton().addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				ArrayList<Recipe> randomizedRecipe = RecipeRecommender.randomRecipe();
+//				stateModel.setOutputRecipes(randomizedRecipe);
+//				stateModel.setState(State.DISPLAYING_OUTPUT);
+//			}
+//		});
 		
 	}
 	
