@@ -69,7 +69,9 @@ public class RecipeDisplayController {
 	 * Update the recipes to be displayed
 	 */
 	public void populateRecipes() {
-		view.getRecipesModel().removeAllElements();
+		if (view.getRecipesModel().size() != 0) {
+			view.getRecipesModel().removeAllElements();
+		}
 		for (Recipe r : stateModel.getOutputRecipes()) {
 			view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()));
 		}
