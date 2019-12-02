@@ -34,13 +34,15 @@ public class RecipeReader {
 					Recipe newRecipe = parseRecipe(currLine);
 					recipes.add(newRecipe);
 				} catch(Exception e) {
+					// even in the cleaned csv file some lines are not in the right format to be read in. 
+					// if this is one of those lines, just skip this recipe.  
 					continue;
 				}
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("The file " + filename + " could not be found.");
 		}
 		return recipes;
 	}
