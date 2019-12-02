@@ -48,7 +48,7 @@ public class RecipeRecommender {
 			} else {
 				// if we havn't gone through enough recipes yet set the
 				// cutoff score to -1.0 so any recipe will make it into the list
-				if (i < numRecipes) {
+				if (topRecipes.size() < numRecipes) {
 					cutoffScore = -1.0;
 				}
 				// if we have gone through enough recipe set the cutoff
@@ -77,9 +77,9 @@ public class RecipeRecommender {
 						}
 					}
 					// remove the excess recipe if necessary
-					if (i >= numRecipes) {
-						topRecipes.remove(numRecipes);
-						topSimilarity.remove(numRecipes);
+					if (topRecipes.size() >= numRecipes) {
+						topRecipes.remove(numRecipes-1);
+						topSimilarity.remove(numRecipes-1);
 					}
 				}
 			}
