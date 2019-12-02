@@ -201,6 +201,16 @@ public class Recipe {
 		this.ingredients = ingredients;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Recipe compRecipe = (Recipe) obj;
+		if (compRecipe.name.contentEquals(this.name) && compRecipe.contributorID==this.contributorID) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }
 
 
