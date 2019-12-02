@@ -21,6 +21,9 @@ public class IngredientInputController {
 		this.dataPrep = new DataPreparation("en-token.bin", "en-pos-maxent.bin");
 	}
 	
+	/**
+	 * Loads all of the recipes into the recipes arrayList
+	 */
 	public void populateRecipes() {
 		RecipeReader recipeReader = new RecipeReader("data/RAW_recipes_cleaned.csv");
 		this.recipes = recipeReader.readRecipes();
