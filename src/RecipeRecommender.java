@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.text.similarity.CosineDistance;
 
@@ -7,7 +9,7 @@ import org.apache.commons.text.similarity.CosineDistance;
  */
 
 public class RecipeRecommender {
-	
+
 	/**
 	 * based on user inputted ingredients, it returns recipes with the most similar ingredients.  Similarity is calculated using cosine similarity.
 	 * Additionally, non noun words are removed from each ingredient.
@@ -31,11 +33,11 @@ public class RecipeRecommender {
 			}
 		}
 		System.out.println(errorCounter);
-		
+
 		ArrayList<Recipe> topRecipes = new ArrayList<Recipe>();
 		ArrayList<Double> topSimilarity = new ArrayList<Double>();
 		double cutoffScore;
-		
+
 		for (int i = 0; i < recipes.size(); i++) {
 			// automatically add the first recipe
 			if (i==0) {
@@ -80,30 +82,30 @@ public class RecipeRecommender {
 				}
 			}
 		}
-		
+
 		//DELETE
 		for (Double d : topSimilarity) {
 			System.out.println(d);
 		}
-		
+
 		return topRecipes;
 	}
-	
-	
+
+
 //	 Using this main method for testing purposes DELETE EVENTUALLY
-	  public static void main(String[] args) { 
+	  public static void main(String[] args) {
 //		  RecipeRecommender rr = new
 //		  RecipeRecommender();
-//		  
+//
 //		  String[] example = new String[3]; example[0] = "prepared pizza crust";
 //		  example[1] = "sausage patty"; example[2] = "eggs";
-//		  
-//		  rr.returnRecipe(example); System.out.println(example); 
+//
+//		  rr.returnRecipe(example); System.out.println(example);
 		  String string1 = "chicken potato rice zucchini carrot";
 		  String string2 = "zucchini";
-		  
+
 		  System.out.println((1 - new CosineDistance().apply(string2, string1)));
 	  }
-	 
-	
+
+
 }

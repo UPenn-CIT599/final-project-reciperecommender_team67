@@ -129,6 +129,10 @@ public class DataPreparation {
 		}
 		return returnString;
 	}
+
+	public void getSimililarity(ArrayList<Recipe> allRecipes) {
+		//return
+	}
 	
 	/**
 	 * removes the spaces from a string

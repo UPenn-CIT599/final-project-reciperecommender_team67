@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/commons-text-1.8/commons-text-1.8-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/commons-text-1.8/commons-text-1.8-sources.jar"/>
 	<classpathentry kind="lib" path="lib/commons-text-1.8/commons-text-1.8-test-sources.jar"/>
@@ -11,5 +15,43 @@
 	<classpathentry kind="lib" path="lib/commons-lang3-3.9/commons-lang3-3.9-test-sources.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.9/commons-lang3-3.9-tests.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.9/commons-lang3-3.9.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="lib/openNLP/aopalliance-repackaged-2.5.0-b30.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/grizzly-framework-2.3.28.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/grizzly-http-2.3.28.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/grizzly-http-server-2.3.28.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/hk2-api-2.5.0-b30.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/hk2-locator-2.5.0-b30.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/hk2-utils-2.5.0-b30.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/hppc-0.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jackson-annotations-2.8.4.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jackson-core-2.8.4.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jackson-databind-2.8.4.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jackson-jaxrs-base-2.8.4.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jackson-jaxrs-json-provider-2.8.4.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jackson-module-jaxb-annotations-2.8.4.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/javassist-3.20.0-GA.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/javax.inject-2.5.0-b30.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/javax.ws.rs-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jcommander-1.48.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jersey-client-2.25.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jersey-common-2.25.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jersey-container-grizzly2-http-2.25.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jersey-entity-filtering-2.25.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jersey-guava-2.25.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jersey-media-jaxb-2.25.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jersey-media-json-jackson-2.25.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/jersey-server-2.25.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/morfologik-fsa-2.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/morfologik-fsa-builders-2.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/morfologik-stemming-2.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/morfologik-tools-2.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/opennlp-brat-annotator-1.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/opennlp-morfologik-addon-1.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/opennlp-tools-1.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/opennlp-uima-1.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/osgi-resource-locator-1.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/openNLP/validation-api-1.1.0.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

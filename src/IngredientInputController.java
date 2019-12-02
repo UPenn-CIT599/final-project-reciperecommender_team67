@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 
@@ -98,6 +99,14 @@ public class IngredientInputController {
 				else {
 					displayErrorDialog("Please enter some ingredients before searching for recipes!");
 				}
+			}
+		});
+
+		view.getFeelingLuckyButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Recipe> randomizedRecipe = RecipeRecommender.randomRecipe();
+				stateModel.setOutputRecipes(randomizedRecipe);
+				stateModel.setState(State.DISPLAYING_OUTPUT);
 			}
 		});
 		
