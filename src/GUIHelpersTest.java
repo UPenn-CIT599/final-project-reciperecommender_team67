@@ -2,6 +2,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * JUnit tests for GUIHelpers class methods
+ *
+ */
 class GUIHelpersTest {
 	
 	
