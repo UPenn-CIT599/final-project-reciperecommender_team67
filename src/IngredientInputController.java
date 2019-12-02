@@ -88,7 +88,7 @@ public class IngredientInputController {
 					
 					String inputIngredientString = dataPrep.makeContiniousString(inputIngredientArray).toLowerCase();
 					
-					ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(recipes, inputIngredientString, 10);
+					ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(recipes, inputIngredientString, 10, 0.5);
 					
 					if (outputRecipes.size()==0) {
 						displayErrorDialog("We could not find any recipes that are a good match. Please edit your ingredients.");
