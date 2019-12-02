@@ -20,4 +20,11 @@ class GUIHelpersTest {
 		String recipeId = "5689";
 		assertEquals(GUIHelpers.createRecipeURL(recipeName, recipeId), "https://www.food.com/recipe/boiled-chicken-soup-5689");
 	}
+	
+	// testing removeExcessSpaces
+	@Test
+	void testRemoveExcessSpaces() {
+		String testString = "this is     a test  with excess     spaces     ";
+		assertEquals(GUIHelpers.removeExcessSpaces(testString), "this is a test with excess spaces");
+	}
 }
