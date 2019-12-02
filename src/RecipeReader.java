@@ -61,21 +61,25 @@ public class RecipeReader {
 
 		// get the ID of the recipe
 		temp = currLine.split(",",2);
+		temp[0] = dataPrep.removeSpaces(temp[0]);
 		int ID = Integer.parseInt(temp[0]);
 		currLine = temp[1];
 
 		// get the amount of time the recipe takes to make
 		temp = currLine.split(",",2);
+		temp[0] = dataPrep.removeSpaces(temp[0]);
 		int minutes = Integer.parseInt(temp[0]);
 		currLine = temp[1];
 
 		// get the id of the creator of the recipe
 		temp = currLine.split(",",2);
+		temp[0] = dataPrep.removeSpaces(temp[0]);
 		int contributorID = Integer.parseInt(temp[0]);
 		currLine = temp[1];
 
 		// get what date the recipe was submitted
 		temp = currLine.split(",",2);
+		temp[0] = dataPrep.removeSpaces(temp[0]);
 		String dateSubmitted = temp[0];
 		currLine = temp[1];
 
