@@ -204,7 +204,13 @@ public class Recipe {
 	@Override
 	public boolean equals(Object obj) {
 		Recipe compRecipe = (Recipe) obj;
-		if (compRecipe.name.contentEquals(this.name) && compRecipe.contributorID==this.contributorID) {
+		if (compRecipe.getName().contentEquals(this.name) && compRecipe.getID() == this.ID &&
+				compRecipe.getMinutes() == this.minutes && compRecipe.getContributorID() == this.contributorID &&
+				compRecipe.getDateSubmitted().contentEquals(this.dateSubmitted) && compRecipe.getTags().equals(this.tags) &&
+				compRecipe.getNutrition().equals(this.nutrition) && compRecipe.getNumSteps() == this.numSteps &&
+				compRecipe.getSteps().equals(this.steps) && compRecipe.getDescription().contentEquals(this.description) &&
+				compRecipe.getIngredients().equals(this.ingredients)) 
+		{
 			return true;
 		} else {
 			return false;
