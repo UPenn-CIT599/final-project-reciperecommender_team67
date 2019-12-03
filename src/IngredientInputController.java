@@ -55,8 +55,11 @@ public class IngredientInputController {
 		view.getRemoveSelected().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (view.getIngredients().getSelectedIndex() != -1) {
-					view.getIngredientsModel().remove(view.getIngredients().getSelectedIndex());
+				int[] currSelectedIngredients = view.getIngredients().getSelectedIndices();
+				if (currSelectedIngredients.length != 0) {
+					for (int i=currSelectedIngredients.length-1; i>=0; i--) {
+						view.getIngredientsModel().remove(currSelectedIngredients[i]);
+					}
 				}
 			}
 		});
