@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 public class IngredientInputController {
 	private StateModel stateModel;
 	private IngredientInputView view;
-	DataPreparation dataPrep;
-	ArrayList<Recipe> recipes;
+	private DataPreparation dataPrep;
+	private ArrayList<Recipe> recipes;
 	
 	public IngredientInputController(StateModel model, IngredientInputView view) {
 		this.stateModel = model;
@@ -133,5 +133,23 @@ public class IngredientInputController {
 		errorDialog.setLocationRelativeTo(null);
 		errorDialog.setVisible(true);
 	}
+	
+	/**
+	 * gets the StateModel associated with this controller
+	 * @return the StateModel associated with this controller
+	 */
+	public StateModel getStateModel() {
+		return stateModel;
+	}
+	
+	/**
+	 * gets the view associated with this controller
+	 * @return the view associated with this controller
+	 */
+	public IngredientInputView getView() {
+		return view;
+	}
+	
+	
 	
 }
