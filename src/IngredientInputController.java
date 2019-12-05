@@ -97,11 +97,6 @@ public class IngredientInputController {
 						displayErrorDialog("We could not find any recipes that are a good match. Please edit your ingredients.");
 					}
 					else {
-						//DELETE
-						System.out.println(inputIngredientString);
-						for (Recipe r : outputRecipes) {
-							System.out.println(dataPrep.makeContiniousString(r.getIngredients()));
-						}
 						
 						stateModel.setOutputRecipes(outputRecipes);
 						stateModel.setState(State.DISPLAYING_OUTPUT);

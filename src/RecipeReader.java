@@ -145,13 +145,4 @@ public class RecipeReader {
 		return new Recipe(name, ID, minutes, contributorID, dateSubmitted, tags, nutrition, numSteps, steps, description, ingredients);
 	}
 
-
-	// Method for testing purposes DELETE EVENTUALLY
-	public static void main(String[] args) {
-
-		RecipeReader rr = new RecipeReader("data/RAW_recipes_cleaned.csv");
-
-
-	}
-
 }

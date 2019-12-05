@@ -60,10 +60,4 @@ public class GUIHelpers {
 	public static String removeExcessSpaces(String s) {	
 		return s.trim().replaceAll(" +", " ");
 	}
-	
-	public static void main (String[] args) {
-		String string1 = "hello     my  name is   dan";
-		System.out.println(removeExcessSpaces(string1));
-		
-	}
 }
