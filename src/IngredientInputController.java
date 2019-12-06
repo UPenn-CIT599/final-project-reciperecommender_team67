@@ -25,7 +25,7 @@ public class IngredientInputController {
 	 * Loads all of the recipes into the recipes arrayList
 	 */
 	public void populateRecipes() {
-		RecipeReader recipeReader = new RecipeReader("data/RAW_recipes_cleaned.csv");
+		RecipeReader recipeReader = new RecipeReader("RAW_recipes_cleaned.csv");
 		this.recipes = recipeReader.readRecipes();
 	}
 	
