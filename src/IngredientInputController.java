@@ -16,6 +16,7 @@ public class IngredientInputController {
 	static ArrayList<Recipe> recipes; //changed this to public static
 	static ArrayList<String> commonIngredients;
 	static int flagForRandom = 0;
+	static int flagForOnlyCuisineFilter = 0;
 
 	
 	public IngredientInputController(StateModel model, IngredientInputView view) {
@@ -81,6 +82,7 @@ public class IngredientInputController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				flagForRandom = 0;
+				flagForOnlyCuisineFilter = 0;
 				// Make sure the user has entered some ingredients
 				if (view.getIngredientsModel().size() > 0) {
 					String[] inputIngredientArray = new String[view.getIngredientsModel().size()];
@@ -125,7 +127,10 @@ public class IngredientInputController {
 
 				else if (!view.getCuisineInput().getSelectedItem().equals("All cuisines")) {
 						//return recipes by a specific cuisine
+						
+						flagForOnlyCuisineFilter = 1;
 						ArrayList<Recipe> outputRecipes = new ArrayList<>();
+						
 						outputRecipes = RecipeRecommender.returnCuisine(recipes,  (String) view.getCuisineInput().getSelectedItem());
 				
 						if (outputRecipes.size() == 0) {
@@ -148,6 +153,7 @@ public class IngredientInputController {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Recipe> randomizedRecipe = RecipeRecommender.randomRecipe(recipes);
 				flagForRandom = 1;
+				flagForOnlyCuisineFilter = 0;
 				stateModel.setOutputRecipes(randomizedRecipe);
 				stateModel.setState(State.DISPLAYING_OUTPUT);
 			}

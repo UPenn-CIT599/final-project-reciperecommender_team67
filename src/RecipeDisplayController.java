@@ -47,7 +47,7 @@ public class RecipeDisplayController {
 		view.getOpenRecipe().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (IngredientInputController.flagForRandom == 1) {
+				if (IngredientInputController.flagForRandom == 1 || IngredientInputController.flagForOnlyCuisineFilter == 1) {
 					String currRecipeName = view.getRecipesModel().elementAt(view.getRecipes().getSelectedIndex());
 					String currID = Integer.toString(stateModel.getOutputRecipes().get(view.getRecipes().getSelectedIndex()).getID());
 					String url = GUIHelpers.createRecipeURL(currRecipeName, currID);
@@ -91,7 +91,7 @@ public class RecipeDisplayController {
 		if (view.getRecipesModel().size() != 0) {
 			view.getRecipesModel().removeAllElements();
 		}
-		if (IngredientInputController.flagForRandom == 1) {
+		if (IngredientInputController.flagForRandom == 1 || IngredientInputController.flagForOnlyCuisineFilter == 1) {
 			for (Recipe r : stateModel.getOutputRecipes()) {
 				view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()));
 			}
