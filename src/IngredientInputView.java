@@ -54,7 +54,7 @@ public class IngredientInputView {
 	private JButton removeSelected = new JButton("Remove selected");
 	private JButton removeAll = new JButton("Remove all");
 	private JButton submitButton = new JButton("Find Recipes!");
-	private JButton feelingLuckyButton = new JButton("I'm Feeling Lucky! (Pressing will display a completely random recipe for you to try!)");
+	private JButton feelingLuckyButton = new JButton("I'm Feeling Lucky! (random recipe)");
 
 	// List of ingredients user has entered
 	private DefaultListModel<String> ingredientsModel = new DefaultListModel<>();
@@ -68,28 +68,28 @@ public class IngredientInputView {
 		c.fill = GridBagConstraints.HORIZONTAL;
 
 		c.gridx = 0;
-		c.gridy = 0;
+		c.gridy = 1;
 		c.weightx = 1;
 		mainPanel.add(ingredientInput, c);
 
-		c.gridy = 1;
+		c.gridy = 2;
 		mainPanel.add(addButton, c);
 
-		c.gridy = 5;
+		c.gridy = 6;
 		mainPanel.add(removeSelected, c);
 
-		c.gridy = 6;
+		c.gridy = 7;
 		mainPanel.add(removeAll, c);
 
-		c.gridy = 7;
+		c.gridy = 8;
 		mainPanel.add(submitButton, c);
 
-		c.gridy = 8;
-		mainPanel.add(feelingLuckyButton, c);
 		c.gridy = 9;
+		mainPanel.add(feelingLuckyButton, c);
+		c.gridy = 0;
 		mainPanel.add(cuisineInput, c);
 
-		c.gridy = 2;
+		c.gridy = 3;
 		c.gridheight = 3;
 		c.weighty = 1;
 		c.fill = GridBagConstraints.BOTH;
