@@ -87,5 +87,18 @@ public class RecipeRecommender {
 
 		return topRecipes;
 	}
+	
+	/**
+	 * Returns a random recipe
+	 * @parm recipes arrayList of recipes to just a random one from
+	 * @return a random recipe
+	 */
+	public static ArrayList<Recipe> randomRecipe(ArrayList<Recipe> recipes) {
+		Random random = new Random();
+		
+		ArrayList<Recipe> returnList = new ArrayList<Recipe>();
+		returnList.add(recipes.get(random.nextInt(recipes.size())));
+		return returnList;
+	}
 
 }

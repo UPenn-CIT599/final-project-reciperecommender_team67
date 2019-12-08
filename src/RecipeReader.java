@@ -41,7 +41,6 @@ public class RecipeReader {
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 			System.out.println("The file " + filename + " could not be found.");
 		}
 		return recipes;

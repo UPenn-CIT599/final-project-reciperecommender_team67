@@ -109,13 +109,13 @@ public class IngredientInputController {
 			}
 		});
 
-//		view.getFeelingLuckyButton().addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				ArrayList<Recipe> randomizedRecipe = RecipeRecommender.randomRecipe();
-//				stateModel.setOutputRecipes(randomizedRecipe);
-//				stateModel.setState(State.DISPLAYING_OUTPUT);
-//			}
-//		});
+		view.getFeelingLuckyButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Recipe> randomizedRecipe = RecipeRecommender.randomRecipe(recipes);
+				stateModel.setOutputRecipes(randomizedRecipe);
+				stateModel.setState(State.DISPLAYING_OUTPUT);
+			}
+		});
 		
 	}
 	
