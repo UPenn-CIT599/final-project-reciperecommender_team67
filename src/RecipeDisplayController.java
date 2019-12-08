@@ -77,7 +77,7 @@ public class RecipeDisplayController {
 		if (stateModel.getOutputRecipes().size() != 1) {
 			for (Recipe r : stateModel.getOutputRecipes()) {
 				String additionalIngredient = RecipeRecommender.recommendedAdditionalIngredient(r, IngredientInputController.recipes);
-				view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()) + additionalIngredient);
+				view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()) + " " + additionalIngredient);
 	
 			}
 		}
