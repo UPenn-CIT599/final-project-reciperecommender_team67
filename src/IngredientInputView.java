@@ -54,7 +54,7 @@ public class IngredientInputView {
 	private JButton removeSelected = new JButton("Remove selected");
 	private JButton removeAll = new JButton("Remove all");
 	private JButton submitButton = new JButton("Find Recipes!");
-	private JButton feelingLuckyButton = new JButton("I'm Feeling Lucky!");
+	private JButton feelingLuckyButton = new JButton("I'm Feeling Lucky! (random recipe)");
 
 	// List of ingredients user has entered
 	private DefaultListModel<String> ingredientsModel = new DefaultListModel<>();
