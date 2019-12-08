@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 /**
  * class which controls the recipeDisplay view
@@ -48,6 +49,7 @@ public class RecipeDisplayController {
 			public void actionPerformed(ActionEvent e) {
 				if (view.getRecipes().getSelectedIndex() != -1) {
 					String currRecipeName = view.getRecipesModel().elementAt(view.getRecipes().getSelectedIndex());
+					currRecipeName = currRecipeName.substring(0, currRecipeName.indexOf("|"));
 					String currID = Integer.toString(stateModel.getOutputRecipes().get(view.getRecipes().getSelectedIndex()).getID());
 					String url = GUIHelpers.createRecipeURL(currRecipeName, currID);
 					Desktop d = Desktop.getDesktop();
@@ -73,7 +75,9 @@ public class RecipeDisplayController {
 			view.getRecipesModel().removeAllElements();
 		}
 		for (Recipe r : stateModel.getOutputRecipes()) {
-			view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()));
+			String additionalIngredient = RecipeRecommender.recommendedAdditionalIngredient(r, IngredientInputController.recipes);
+			view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()) + additionalIngredient);
+
 		}
 	}
 }

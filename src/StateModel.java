@@ -52,5 +52,7 @@ public class StateModel {
 	public ArrayList<Recipe> getOutputRecipes() {
 		return outputRecipes;
 	}
+	
+	
 
 }

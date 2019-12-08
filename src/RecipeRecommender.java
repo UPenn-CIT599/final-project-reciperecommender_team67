@@ -87,6 +87,134 @@ public class RecipeRecommender {
 
 		return topRecipes;
 	}
+
+	/**
+	 * Takes in a recipe and outputs a 'recommended' ingredient that could be added into the recipe.
+	 * This ingredient is not already included in the list of ingredients. On a functional level,
+	 * this method calls commonPairing. It takes the output of commonPairing, which is a List<String>
+	 * outputs the first ingredient recommended. Will continue to add to this method as there are likely
+	 * very common ingredients that need to be put on a 'do not recommend list'. (IE: sugar, salt).
+	 * @param r
+	 * @return
+	 */
+	public static String recommendedAdditionalIngredient(Recipe r, ArrayList<Recipe> recipeBook) {
+		//build the most common ingredients in the whole recipeBook.
+		
+		List<String> commonPairingsList = new ArrayList<>();
+		
+		commonPairingsList = commonPairing(r, recipeBook);
+
+		if (commonPairingsList.toString().equals("[]")) {
+			return "No items are recommended to be added.";
+		}
+		else {
+			int iterator = 0;
+			Object[] array = commonPairingsList.toArray();
+			String ing = String.valueOf(array[iterator]);
+			ing = ing.substring(0, ing.indexOf("|"));
+			
+			if (IngredientInputController.commonIngredients.contains(ing)) {
+				while(IngredientInputController.commonIngredients.contains(ing)) {
+					iterator++;
+					ing = String.valueOf(array[iterator]);
+					ing = ing.substring(0, ing.indexOf("|"));
+				}	
+			}
+			ing = "| Potential additional ingredient: " + ing;
+			return ing;
+		}
+	}
+	
+	/**
+	 * Creates the list of mostCommonFoods in all recipes.
+	 * @param recipeBook
+	 * @return
+	 */
+	
+	public static ArrayList<String> mostCommonFoods(ArrayList<Recipe> recipeBook) {
+		
+		HashMap<String, Integer> commonFoods = new HashMap<>();
+		ArrayList<String> allIngredientsInRecipeBook = new ArrayList<>();
+		
+		for (Recipe r : recipeBook) {
+			allIngredientsInRecipeBook.addAll(r.getIngredients());
+		}
+		
+		for (String ing : allIngredientsInRecipeBook) {
+			if (ing == null) { }
+			else if (!commonFoods.containsKey(ing)) {
+				commonFoods.put(ing, 1);
+			}
+			else {
+				commonFoods.put(ing, commonFoods.get(ing)+1);
+			}
+		}
+		
+		//sort the list 
+		
+		Stream<Map.Entry<String,Integer>> sorted = commonFoods.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue()));
+		Stream<String> flatMap = sorted.flatMap(x -> Stream.of(x.getKey()+ "|" + x.getValue()));
+
+		//Convert Stream to flattened List for re-export
+		List sortedList = flatMap.collect(Collectors.toList());
+		
+		Object[] sortedArray = sortedList.toArray();
+		
+		ArrayList<String> sortedArrayList = new ArrayList<String>();
+		
+		for (int i = 0; i < 25; i++) {
+			String adj = (String) sortedArray[i];
+			adj = adj.substring(0, adj.indexOf("|"));
+			sortedArrayList.add(adj);
+		}
+		return sortedArrayList;
+		
+	}
+		
+		
+	
+
+	/**
+	 * This method takes in a recipe, and outputs a List that dictates ingredients by frequency
+	 * that appear other recipes that have the same ingredients as the input recipe.
+	 * @param recipe
+	 * @return
+	 */
+	public static List<String> commonPairing(Recipe recipe, ArrayList<Recipe> recipeBook) {
+		ArrayList<String> allIngredientsInRecipes = new ArrayList<>();
+		HashMap<String, Integer> pairings = new HashMap<>();
+
+		//parse out recipes that include the ingredient. Add ALL ingredients
+		//in those recipes to a long list.
+		for (String recipeIngredient : recipe.getIngredients()) {
+			for (Recipe r : recipeBook) {
+				if (r.getIngredients().contains(recipeIngredient)) {
+					allIngredientsInRecipes.addAll(r.getIngredients());
+				}
+			}
+		}
+			//for each ingredient in the long list, add to a hashmap that shows
+			//frequency of appearance. Disregard the original input ingredient.
+
+		for (String ing : allIngredientsInRecipes) {
+			if (ing == null) { }
+			else if (recipe.getIngredients().contains(ing)) { }
+			else if (!pairings.containsKey(ing)) {
+				pairings.put(ing, 1);
+			}
+			else {
+				pairings.put(ing, pairings.get(ing)+1);
+			}
+		}
+
+		//convert HashMap to Stream for sorting purposes
+		Stream<Map.Entry<String,Integer>> sorted = pairings.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue()));
+		Stream<String> flatMap = sorted.flatMap(x -> Stream.of(x.getKey()+ "|" + x.getValue()));
+
+		//Convert Stream to flattened List for re-export
+		List sortedList = flatMap.collect(Collectors.toList());
+		return sortedList;
+	}
 	
 	/**
 	 * Returns a random recipe
@@ -100,5 +228,7 @@ public class RecipeRecommender {
 		returnList.add(recipes.get(random.nextInt(recipes.size())));
 		return returnList;
 	}
+	
+	
 
 }

@@ -13,7 +13,8 @@ public class IngredientInputController {
 	private StateModel stateModel;
 	private IngredientInputView view;
 	private DataPreparation dataPrep;
-	private ArrayList<Recipe> recipes;
+	static ArrayList<Recipe> recipes; //changed this to public static
+	static ArrayList<String> commonIngredients;
 	
 	public IngredientInputController(StateModel model, IngredientInputView view) {
 		this.stateModel = model;
@@ -27,6 +28,7 @@ public class IngredientInputController {
 	public void populateRecipes() {
 		RecipeReader recipeReader = new RecipeReader("RAW_recipes_cleaned.csv");
 		this.recipes = recipeReader.readRecipes();
+		this.commonIngredients = RecipeRecommender.mostCommonFoods(recipes);
 	}
 	
 	/**
