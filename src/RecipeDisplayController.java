@@ -74,10 +74,12 @@ public class RecipeDisplayController {
 		if (view.getRecipesModel().size() != 0) {
 			view.getRecipesModel().removeAllElements();
 		}
-		for (Recipe r : stateModel.getOutputRecipes()) {
-			String additionalIngredient = RecipeRecommender.recommendedAdditionalIngredient(r, IngredientInputController.recipes);
-			view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()) + additionalIngredient);
-
+		if (stateModel.getOutputRecipes().size() != 1) {
+			for (Recipe r : stateModel.getOutputRecipes()) {
+				String additionalIngredient = RecipeRecommender.recommendedAdditionalIngredient(r, IngredientInputController.recipes);
+				view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()) + additionalIngredient);
+	
+			}
 		}
 	}
 }
