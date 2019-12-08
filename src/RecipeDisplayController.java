@@ -64,7 +64,9 @@ public class RecipeDisplayController {
 				}
 				if (view.getRecipes().getSelectedIndex() != -1) {
 					String currRecipeName = view.getRecipesModel().elementAt(view.getRecipes().getSelectedIndex());
-					currRecipeName = currRecipeName.substring(0, currRecipeName.indexOf("|"));
+					if (currRecipeName.contains("|")) {
+						currRecipeName = currRecipeName.substring(0, currRecipeName.indexOf("|"));
+					}
 					String currID = Integer.toString(stateModel.getOutputRecipes().get(view.getRecipes().getSelectedIndex()).getID());
 					String url = GUIHelpers.createRecipeURL(currRecipeName, currID);
 					Desktop d = Desktop.getDesktop();
