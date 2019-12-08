@@ -88,14 +88,12 @@ public class RecipeRecommender {
 		return topRecipes;
 	}
 
+
 	/**
-	 * Takes in a recipe and outputs a 'recommended' ingredient that could be added into the recipe.
-	 * This ingredient is not already included in the list of ingredients. On a functional level,
-	 * this method calls commonPairing. It takes the output of commonPairing, which is a List<String>
-	 * outputs the first ingredient recommended. Will continue to add to this method as there are likely
-	 * very common ingredients that need to be put on a 'do not recommend list'. (IE: sugar, salt).
-	 * @param r
-	 * @return
+	 * 
+	 * @param r a recipe to find additional ingredients to add to
+	 * @param recipeBook the list of recipes to use as data to find additional ingredients
+	 * @return A string containing the additional ingredient to reccomend
 	 */
 	public static String recommendedAdditionalIngredient(Recipe r, ArrayList<Recipe> recipeBook) {
 		//build the most common ingredients in the whole recipeBook.
@@ -127,8 +125,8 @@ public class RecipeRecommender {
 	
 	/**
 	 * Creates the list of mostCommonFoods in all recipes.
-	 * @param recipeBook
-	 * @return
+	 * @param recipeBook ArrayList of recipes to find the most common ingredients
+	 * @return ArrayList containing the most common ingredients across all recipes
 	 */
 	
 	public static ArrayList<String> mostCommonFoods(ArrayList<Recipe> recipeBook) {
@@ -171,14 +169,12 @@ public class RecipeRecommender {
 		
 	}
 		
-		
 	
-
 	/**
-	 * This method takes in a recipe, and outputs a List that dictates ingredients by frequency
-	 * that appear other recipes that have the same ingredients as the input recipe.
-	 * @param recipe
-	 * @return
+	 * Finds commonly paired ingredients between recipes
+	 * @param recipe The Recipe you want to find commonly paired ingredients to
+	 * @param recipeBook The list of recipes you want to use to find common pairings
+	 * @return a List of ingredients that are commonly paired with ingredients in Recipe
 	 */
 	public static List<String> commonPairing(Recipe recipe, ArrayList<Recipe> recipeBook) {
 		ArrayList<String> allIngredientsInRecipes = new ArrayList<>();
@@ -229,6 +225,12 @@ public class RecipeRecommender {
 		return returnList;
 	}
 	
+	/**
+	 * Finds all recipes of a certain cuisine
+	 * @param recipes ArrayList of recipes to search through
+	 * @param cuisine String representing the cuisine of interest
+	 * @return ArrayList of Recipes that are of the cuisine of interest
+	 */
 	public static ArrayList<Recipe> returnCuisine(ArrayList<Recipe> recipes, String cuisine) {
 		ArrayList<Recipe> cuisineRecipes = new ArrayList<Recipe>();
 		ArrayList<Recipe> tooManyRecipes = new ArrayList<Recipe>();
@@ -244,8 +246,5 @@ public class RecipeRecommender {
 		return cuisineRecipes;
 	}
 	
-	public static void main(String[] args) {
-		
-	}
 
 }
