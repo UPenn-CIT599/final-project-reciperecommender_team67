@@ -1,6 +1,15 @@
 Project name: Recipe Recommender
 
-Description:  Our project finds recipes with similar ingredients to a list of user inputted ingredients.  It uses this dataset to select recipes from https://www.kaggle.com/shuyangli94/food-com-recipes-and-user-interactions.  Ingredient lists were cleaned using NLP to remove all non noun words.  The similarity metric we used was cosine similarity.  
+Description: 
+
+Our project finds recipes with similar ingredients to a list of user inputted ingredients.  It uses this dataset to select recipes from https://www.kaggle.com/shuyangli94/food-com-recipes-and-user-interactions. Ingredient lists were cleaned using NLP to remove all non noun words.  The similarity metric we used was cosine similarity. The user inputs ingredients and obtains recommendations for recipes, including recommendations for extra ingredients. The user can then select a recipe from the results list and obtain a web link to the full online details for the recipe.
 
 Work breakdown:
+
 Dan: Code for user interface and user interface functionality (GUIRunner, GUIHelpers, IngredientInputController, IngredientInputView, RecipeDisplayController, RecipeDisplayView, StateModel), excluding the "I'm feeling lucky button."  Code to parse each line of the CSV file (parseRecipe method in RecipeReader).  All of the JUnit tests.  Code to clean the original CSV file (RecipeDataCleaner).  Code to remove the non noun words from ingredients (removeNonNouns method in DataPreparation class).  Code to find the most similar recipes to user inputted ingredients using cosine similarity (returnRecipe method in RecipeRecommender class).  Dan wrote code for the method but it was Sylvain's idea and he found the actual library which contained the functionality to calculate cosine similarity.     
+
+Sylvain: original files for the data structures and pre-processing (Recipe.java, RecipeReader.java). R&D in the following areas: using word vectors in DL4J library (dismissed, too unstable, multiple dependencies not working for the vector space model libraires), using MySQL to store the recipe data structures with the JDBC connector (work in progress, not submitted in time for due date), and using cosine distance similarity metric to measure the best candidates between user ingredients inputs and recipe ingredients (originally in its own class file, migrated to RecipeRecommender.java in a simplified form). Extensive QC (quality control) to test and debug the final project files.
+
+LINK TO GITHUB REPOSITORY:
+
+https://github.com/UPenn-CIT599/final-project-reciperecommender_team67
