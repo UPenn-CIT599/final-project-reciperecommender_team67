@@ -47,6 +47,21 @@ public class RecipeDisplayController {
 		view.getOpenRecipe().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (IngredientInputController.flagForRandom == 1) {
+					String currRecipeName = view.getRecipesModel().elementAt(view.getRecipes().getSelectedIndex());
+					String currID = Integer.toString(stateModel.getOutputRecipes().get(view.getRecipes().getSelectedIndex()).getID());
+					String url = GUIHelpers.createRecipeURL(currRecipeName, currID);
+					Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI(url));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 				if (view.getRecipes().getSelectedIndex() != -1) {
 					String currRecipeName = view.getRecipesModel().elementAt(view.getRecipes().getSelectedIndex());
 					currRecipeName = currRecipeName.substring(0, currRecipeName.indexOf("|"));
@@ -74,14 +89,12 @@ public class RecipeDisplayController {
 		if (view.getRecipesModel().size() != 0) {
 			view.getRecipesModel().removeAllElements();
 		}
-		if (stateModel.getOutputRecipes().size() != 1) {
+		if (IngredientInputController.flagForRandom == 1) {
 			for (Recipe r : stateModel.getOutputRecipes()) {
-				String additionalIngredient = RecipeRecommender.recommendedAdditionalIngredient(r, IngredientInputController.recipes);
-				view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()) + " " + additionalIngredient);
-	
+				view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()));
 			}
 		}
-		else if (stateModel.getOutputRecipes().size() == 1) {
+		else {
 			for (Recipe r : stateModel.getOutputRecipes()) {
 				String additionalIngredient = RecipeRecommender.recommendedAdditionalIngredient(r, IngredientInputController.recipes);
 				view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()) + " " + additionalIngredient);

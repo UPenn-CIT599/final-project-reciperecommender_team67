@@ -15,6 +15,7 @@ public class IngredientInputController {
 	private DataPreparation dataPrep;
 	static ArrayList<Recipe> recipes; //changed this to public static
 	static ArrayList<String> commonIngredients;
+	static int flagForRandom = 0;
 
 	
 	public IngredientInputController(StateModel model, IngredientInputView view) {
@@ -79,6 +80,7 @@ public class IngredientInputController {
 		view.getSubmitButton().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				flagForRandom = 0;
 				// Make sure the user has entered some ingredients
 				if (view.getIngredientsModel().size() > 0) {
 					String[] inputIngredientArray = new String[view.getIngredientsModel().size()];
@@ -145,6 +147,7 @@ public class IngredientInputController {
 		view.getFeelingLuckyButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Recipe> randomizedRecipe = RecipeRecommender.randomRecipe(recipes);
+				flagForRandom = 1;
 				stateModel.setOutputRecipes(randomizedRecipe);
 				stateModel.setState(State.DISPLAYING_OUTPUT);
 			}
