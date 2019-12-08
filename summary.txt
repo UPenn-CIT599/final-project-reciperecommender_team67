@@ -10,6 +10,8 @@ Dan: Code for user interface and user interface functionality (GUIRunner, GUIHel
 
 Sylvain: original files for the data structures and pre-processing (Recipe.java, RecipeReader.java). R&D in the following areas: using word vectors in DL4J library (dismissed, too unstable, multiple dependencies not working for the vector space model libraries), using MySQL to store the recipe data structures with the JDBC connector (work in progress, not submitted in time for due date), and using cosine distance similarity metric to measure the best candidates between user ingredients inputs and recipe ingredients (originally in its own class file, migrated to RecipeRecommender.java in a simplified form). Extensive QC (quality control) to test and debug the final project files.
 
+Jeanine: Code for the original simple algorithm for the recipe recommender (based off a simple count of what ingredients were inputted by the user compared to which that were included the recipes in the database), the additional ingredient recommender, an algorithm to recommend potentially delicious additional ingredients into recipes that do not invoke those ingredients, based on what is used commonly together across all recipes, and the algorithm to sort and filter by cuisine. The code written by me is mostly incorporated into the RecipeRecommender, IngredientInputController, and RecipeDisplayController. 
+
 LINK TO GITHUB REPOSITORY:
 
 https://github.com/UPenn-CIT599/final-project-reciperecommender_team67
