@@ -1,0 +1,6 @@
+Project name: Recipe Recommender
+
+Description:  Our project finds recipes with similar ingredients to a list of user inputted ingredients.  It uses this dataset to select recipes from https://www.kaggle.com/shuyangli94/food-com-recipes-and-user-interactions.  Ingredient lists were cleaned using NLP to remove all non noun words.  The similarity metric we used was cosine similarity.  
+
+Work breakdown:
+Dan: Code for user interface and user interface functionality (GUIRunner, GUIHelpers, IngredientInputController, IngredientInputView, RecipeDisplayController, RecipeDisplayView, StateModel), excluding the "I'm feeling lucky button."  Code to parse each line of the CSV file (parseRecipe method in RecipeReader).  All of the JUnit tests.  Code to clean the original CSV file (RecipeDataCleaner).  Code to remove the non noun words from ingredients (removeNonNouns method in DataPreparation class).  Code to find the most similar recipes to user inputted ingredients using cosine similarity (returnRecipe method in RecipeRecommender class).  Dan wrote code for the cosine similarity calculation but it was Sylvain's idea and he found the actual library which contained that functionality.     
