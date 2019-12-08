@@ -89,7 +89,7 @@ public class IngredientInputController {
 						inputIngredientArray[i] = dataPrep.removeSpaces(inputIngredientArray[i]);
 					}
 					
-					String inputIngredientString = dataPrep.makeContiniousString(inputIngredientArray).toLowerCase();
+					String inputIngredientString = dataPrep.makeContinuousString(inputIngredientArray).toLowerCase();
 					
 					ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(recipes, inputIngredientString, 10, 0.5);
 					

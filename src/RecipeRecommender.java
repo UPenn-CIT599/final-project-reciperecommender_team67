@@ -5,18 +5,18 @@ import java.util.stream.Stream;
 import org.apache.commons.text.similarity.CosineDistance;
 
 /**
- * class that reccommends recipes based on ingredients
+ * class that recommends recipes based on ingredients
  */
 
 public class RecipeRecommender {
 
 	/**
-	 * based on user inputted ingredients, it returns recipes with the most similar ingredients.  Similarity is calculated using cosine similarity.
+	 * based on user input ingredients, it returns recipes with the most similar ingredients.  Similarity is calculated using cosine similarity.
 	 * Additionally, non noun words are removed from each ingredient.
 	 * @param recipes arraylist of recipes to choose from
 	 * @param inputIngredients a string containing space separated ingredients to use to find a similar recipe
 	 * @param numRecipes integer representing how many recipes should be returned
-	 * @param minSimilarity the similarity score threshold a recipe must excede to be included
+	 * @param minSimilarity the similarity score threshold a recipe must exceed to be included
 	 * @return Arraylist of numRecipes recipes that are most similar to inputIngredients
 	 */
 	public static ArrayList<Recipe> returnRecipe(ArrayList<Recipe> recipes, String inputIngredients, int numRecipes, double minSimilarity) {
@@ -24,7 +24,7 @@ public class RecipeRecommender {
 		ArrayList<Double> cosSimilarity = new ArrayList<Double>();
 		// get cosine similarity for each recipe
 		for (Recipe r : recipes) {
-			String currRecipeIngredients = dataPrep.makeContiniousString(r.getIngredients());
+			String currRecipeIngredients = dataPrep.makeContinuousString(r.getIngredients());
 			try {
 				cosSimilarity.add(1 - new CosineDistance().apply(currRecipeIngredients.toLowerCase(), inputIngredients));
 			} catch(Exception e) {
@@ -37,7 +37,7 @@ public class RecipeRecommender {
 		double cutoffScore;
 
 		for (int i = 0; i < recipes.size(); i++) {
-			// if a recipe doesn't excede threshold skip it
+			// if a recipe doesn't exceed threshold skip it
 			if (cosSimilarity.get(i) < minSimilarity) {
 				continue;
 			}

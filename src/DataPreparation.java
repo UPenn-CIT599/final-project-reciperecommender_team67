@@ -24,7 +24,7 @@ public class DataPreparation {
 	POSTaggerME posTagger;
 	
 	/**
-	 * Contructor
+	 * Constructor
 	 * @param tokenModelFileName name of the model file that will break ingredients up into tokens
 	 * @param posModelFileName name of the model file that will identify part of speech of the ingredients
 	 */
@@ -95,7 +95,7 @@ public class DataPreparation {
 	 * @param ingredients array of strings with ingredients in each cell
 	 * @return long string of all ingredients
 	 */
-	public String makeContiniousString(String[] ingredients) {
+	public String makeContinuousString(String[] ingredients) {
 		String returnString = "";
 		boolean isFirst = true;
 		for (String s : ingredients) {
@@ -115,7 +115,7 @@ public class DataPreparation {
 	 * @param ingredients array list of strings with ingredients in each cell
 	 * @return long string of all ingredients
 	 */
-	public String makeContiniousString(ArrayList<String> ingredients) {
+	public String makeContinuousString(ArrayList<String> ingredients) {
 		String returnString = "";
 		boolean isFirst = true;
 		for (String s : ingredients) {
@@ -130,9 +130,9 @@ public class DataPreparation {
 		return returnString;
 	}
 
-	public void getSimililarity(ArrayList<Recipe> allRecipes) {
-		//return
-	}
+//	public void getSimililarity(ArrayList<Recipe> allRecipes) {
+//		//return
+//	}
 	
 	/**
 	 * removes the spaces from a string

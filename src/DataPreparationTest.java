@@ -15,20 +15,20 @@ class DataPreparationTest {
 		assertEquals(dataPrep.removeNonNouns(testString), "chicken breast");
 	}
 	
-	// testing make makeContiniousString with array input
+	// testing make makeContinuousString with array input
 	@Test
-	void testMakeContiniousStringArray() {
+	void testMakeContinuousStringArray() {
 		String[] testArray = {"chicken", "stock"};
-		assertEquals(dataPrep.makeContiniousString(testArray), "chicken stock");
+		assertEquals(dataPrep.makeContinuousString(testArray), "chicken stock");
 	}
 	
-	// testing make makeContiniousString with arrayList input
+	// testing make makeContinuousString with arrayList input
 	@Test
-	void testMakeContiniousStringArrayList() {
+	void testMakeContinuousStringArrayList() {
 		ArrayList<String> testArrayList = new ArrayList<String>();
 		testArrayList.add("chicken");
 		testArrayList.add("stock");
-		assertEquals(dataPrep.makeContiniousString(testArrayList), "chicken stock");
+		assertEquals(dataPrep.makeContinuousString(testArrayList), "chicken stock");
 	}
 	
 	// testing removeSpaces
