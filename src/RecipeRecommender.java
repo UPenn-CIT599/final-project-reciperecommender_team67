@@ -229,6 +229,23 @@ public class RecipeRecommender {
 		return returnList;
 	}
 	
+	public static ArrayList<Recipe> returnCuisine(ArrayList<Recipe> recipes, String cuisine) {
+		ArrayList<Recipe> cuisineRecipes = new ArrayList<Recipe>();
+		ArrayList<Recipe> tooManyRecipes = new ArrayList<Recipe>();
+		for (Recipe r : recipes) {
+			if (r.getTags().contains(cuisine)) {
+				cuisineRecipes.add(r);
+			}
+		}
+		if (cuisineRecipes.size() > 250) {
+			return tooManyRecipes;
+		}
+		
+		return cuisineRecipes;
+	}
 	
+	public static void main(String[] args) {
+		
+	}
 
 }

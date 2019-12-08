@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 /**
@@ -11,6 +13,41 @@ public class IngredientInputView {
 
 	// Ingredient text field
 	private JTextField ingredientInput = new JTextField("Enter ingredient");
+	
+	String[] hardcodedCuisines = {"All cuisines",
+								 "north-american",
+				                 "mexican",
+				                 "vegetarian",
+				                 "american",
+				                 "canadian",
+				                 "vegan",
+				                 "asian",
+				                 "european",
+				                 "italian",
+				                 "scandinavian",
+				                 "midwestern",
+				                 "english",
+				                 "middle-eastern",
+				                 "lebanese",
+				                 "hawaiian",
+				                 "greek",
+				                 "kosher",
+				                 "japanese",
+				                 "cajun",
+				                 "creole",
+				                 "oaxacan",
+				                 "south-american",
+				                 "jewish-ashkenazi",
+				                 "pakistani",
+				                 "somalian",
+				                 "african",
+				                 "spanish",
+				                 "australian",
+				                 "tex-mex",
+				                 "californian"};
+	
+	JComboBox<String> cuisineInput = new JComboBox<>(hardcodedCuisines);
+	
 
 	// Buttons
 	private JButton addButton = new JButton("Add ingredient");
@@ -49,12 +86,15 @@ public class IngredientInputView {
 
 		c.gridy = 8;
 		mainPanel.add(feelingLuckyButton, c);
+		c.gridy = 9;
+		mainPanel.add(cuisineInput, c);
 
 		c.gridy = 2;
 		c.gridheight = 3;
 		c.weighty = 1;
 		c.fill = GridBagConstraints.BOTH;
 		mainPanel.add(new JScrollPane(ingredients), c);
+
 
 	}
 
@@ -128,6 +168,11 @@ public class IngredientInputView {
 	 */
 	public JButton getFeelingLuckyButton() {
 		return feelingLuckyButton;
+	}
+	
+	public JComboBox<String> getCuisineInput() {
+		return cuisineInput;
+		
 	}
 
 }

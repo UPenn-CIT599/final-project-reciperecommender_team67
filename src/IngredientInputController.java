@@ -15,6 +15,7 @@ public class IngredientInputController {
 	private DataPreparation dataPrep;
 	static ArrayList<Recipe> recipes; //changed this to public static
 	static ArrayList<String> commonIngredients;
+
 	
 	public IngredientInputController(StateModel model, IngredientInputView view) {
 		this.stateModel = model;
@@ -92,19 +93,49 @@ public class IngredientInputController {
 					}
 					
 					String inputIngredientString = dataPrep.makeContinuousString(inputIngredientArray).toLowerCase();
+					String cuisine = (String) view.getCuisineInput().getSelectedItem();
 					
-					ArrayList<Recipe> outputRecipes = RecipeRecommender.returnRecipe(recipes, inputIngredientString, 10, 0.5);
+					ArrayList<Recipe> outputRecipes = new ArrayList<Recipe>();
+					
+					if (cuisine.equals("All cuisines")) {
+						outputRecipes = RecipeRecommender.returnRecipe(recipes, inputIngredientString, 10, 0.5);
+					}
+					else {
+						ArrayList<Recipe> beforeCuisineOutputRecipes = RecipeRecommender.returnRecipe(recipes, inputIngredientString, 10, 0.5);
+						outputRecipes = new ArrayList<>();
+						
+						for (Recipe r : beforeCuisineOutputRecipes) {
+							if (r.getTags().contains((String) view.getCuisineInput().getSelectedItem())) {
+								outputRecipes.add(r);
+							}
+						}
+					}
 					
 					if (outputRecipes.size()==0) {
 						displayErrorDialog("We could not find any recipes that are a good match. Please edit your ingredients.");
 					}
 					else {
-						
 						stateModel.setOutputRecipes(outputRecipes);
 						stateModel.setState(State.DISPLAYING_OUTPUT);
 					}
 				}
 				// If they have not entered any ingredients, then prompt them to.
+
+				else if (!view.getCuisineInput().getSelectedItem().equals("All cuisines")) {
+						//return recipes by a specific cuisine
+						ArrayList<Recipe> outputRecipes = new ArrayList<>();
+						outputRecipes = RecipeRecommender.returnCuisine(recipes,  (String) view.getCuisineInput().getSelectedItem());
+				
+						if (outputRecipes.size() == 0) {
+						displayErrorDialog("There are too many recipes to show. Please add some ingredients to narrow down results.");
+						}
+						
+						else {
+						stateModel.setOutputRecipes(outputRecipes);
+						stateModel.setState(State.DISPLAYING_OUTPUT);
+						}
+						}
+				
 				else {
 					displayErrorDialog("Please enter some ingredients before searching for recipes!");
 				}
@@ -118,6 +149,7 @@ public class IngredientInputController {
 				stateModel.setState(State.DISPLAYING_OUTPUT);
 			}
 		});
+	
 		
 	}
 	
