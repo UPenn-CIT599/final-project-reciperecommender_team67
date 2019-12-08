@@ -81,5 +81,10 @@ public class RecipeDisplayController {
 	
 			}
 		}
+		else if (stateModel.getOutputRecipes().size() == 1) {
+			for (Recipe r : stateModel.getOutputRecipes()) {
+				view.getRecipesModel().addElement(GUIHelpers.removeExcessSpaces(r.getName()));
+			}
+		}
 	}
 }
