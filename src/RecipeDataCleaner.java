@@ -3,6 +3,9 @@ import java.io.*;
 
 /**
  * class to clean the recipe data to ensure that one entry is on each line
+ * This Java class serves two purposes: (i) to produce a smaller data set "RAW_recipes_short.csv", in order to test and debug the project code, and
+ * (ii) to generate a complete, cleaned version of the raw data file from the Kaggle website, named "RAW_recipes_cleaned.csv"
+ * (the original is RAW_recipes.csv, at https://www.kaggle.com/shuyangli94/food-com-recipes-and-user-interactions#RAW_recipes.csv)
  */
 public class RecipeDataCleaner {
 

@@ -44,7 +44,7 @@ public class Recipe {
 		return "Recipe [name=" + name + ", ID=" + ID + ", minutes=" + minutes + ", contributorID=" + contributorID
 				+ ", dateSubmitted=" + dateSubmitted + ", tags=" + tags + ", nutrition=" + nutrition + ", numSteps="
 				+ numSteps + ", steps=" + steps + ", description=" + description + ", ingredients=" + ingredients
-				+ ", numIngredients=" + "]";
+				+ "]";
 	}
 
 	/**
